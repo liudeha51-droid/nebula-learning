@@ -1,0 +1,1301 @@
+{
+  "provenance": "development fixtures, not independent AI review",
+  "questions": [
+    {
+      "stem": "Calculate 2 + 4.",
+      "expression": "2+4",
+      "options": {
+        "A": "7",
+        "B": "6",
+        "C": "9",
+        "D": "10"
+      },
+      "answer": "B",
+      "solution": "Add the two integers: 2 + 4 = 6.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 3 + 4.",
+      "expression": "3+4",
+      "options": {
+        "A": "8",
+        "B": "9",
+        "C": "7",
+        "D": "11"
+      },
+      "answer": "C",
+      "solution": "Add the two integers: 3 + 4 = 7.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 4 + 4.",
+      "expression": "4+4",
+      "options": {
+        "A": "9",
+        "B": "10",
+        "C": "11",
+        "D": "8"
+      },
+      "answer": "D",
+      "solution": "Add the two integers: 4 + 4 = 8.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 5 + 4.",
+      "expression": "5+4",
+      "options": {
+        "A": "9",
+        "B": "11",
+        "C": "12",
+        "D": "13"
+      },
+      "answer": "A",
+      "solution": "Add the two integers: 5 + 4 = 9.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 5 + 5.",
+      "expression": "5+5",
+      "options": {
+        "A": "11",
+        "B": "12",
+        "C": "10",
+        "D": "14"
+      },
+      "answer": "C",
+      "solution": "Add the two integers: 5 + 5 = 10.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 6 + 5.",
+      "expression": "6+5",
+      "options": {
+        "A": "12",
+        "B": "13",
+        "C": "14",
+        "D": "11"
+      },
+      "answer": "D",
+      "solution": "Add the two integers: 6 + 5 = 11.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 7 + 5.",
+      "expression": "7+5",
+      "options": {
+        "A": "12",
+        "B": "14",
+        "C": "15",
+        "D": "16"
+      },
+      "answer": "A",
+      "solution": "Add the two integers: 7 + 5 = 12.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 8 + 5.",
+      "expression": "8+5",
+      "options": {
+        "A": "14",
+        "B": "13",
+        "C": "16",
+        "D": "17"
+      },
+      "answer": "B",
+      "solution": "Add the two integers: 8 + 5 = 13.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 8 + 6.",
+      "expression": "8+6",
+      "options": {
+        "A": "15",
+        "B": "16",
+        "C": "17",
+        "D": "14"
+      },
+      "answer": "D",
+      "solution": "Add the two integers: 8 + 6 = 14.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 9 + 6.",
+      "expression": "9+6",
+      "options": {
+        "A": "15",
+        "B": "17",
+        "C": "18",
+        "D": "19"
+      },
+      "answer": "A",
+      "solution": "Add the two integers: 9 + 6 = 15.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 10 + 6.",
+      "expression": "10+6",
+      "options": {
+        "A": "17",
+        "B": "16",
+        "C": "19",
+        "D": "20"
+      },
+      "answer": "B",
+      "solution": "Add the two integers: 10 + 6 = 16.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Calculate 11 + 6.",
+      "expression": "11+6",
+      "options": {
+        "A": "18",
+        "B": "19",
+        "C": "17",
+        "D": "21"
+      },
+      "answer": "C",
+      "solution": "Add the two integers: 11 + 6 = 17.",
+      "node_id": "math.numbers",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.numbers"
+    },
+    {
+      "stem": "Solve 2x + 4 = 10 for real x.",
+      "expression": "(10-4)/2",
+      "options": {
+        "A": "4",
+        "B": "3",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "B",
+      "solution": "Subtract 4 from both sides, then divide by 2. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 3x + 4 = 13 for real x.",
+      "expression": "(13-4)/3",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "3",
+        "D": "7"
+      },
+      "answer": "C",
+      "solution": "Subtract 4 from both sides, then divide by 3. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 4x + 4 = 16 for real x.",
+      "expression": "(16-4)/4",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "3"
+      },
+      "answer": "D",
+      "solution": "Subtract 4 from both sides, then divide by 4. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 5x + 4 = 19 for real x.",
+      "expression": "(19-4)/5",
+      "options": {
+        "A": "3",
+        "B": "5",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "A",
+      "solution": "Subtract 4 from both sides, then divide by 5. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 5x + 5 = 20 for real x.",
+      "expression": "(20-5)/5",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "3",
+        "D": "7"
+      },
+      "answer": "C",
+      "solution": "Subtract 5 from both sides, then divide by 5. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 6x + 5 = 23 for real x.",
+      "expression": "(23-5)/6",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "3"
+      },
+      "answer": "D",
+      "solution": "Subtract 5 from both sides, then divide by 6. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 7x + 5 = 26 for real x.",
+      "expression": "(26-5)/7",
+      "options": {
+        "A": "3",
+        "B": "5",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "A",
+      "solution": "Subtract 5 from both sides, then divide by 7. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 8x + 5 = 29 for real x.",
+      "expression": "(29-5)/8",
+      "options": {
+        "A": "4",
+        "B": "3",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "B",
+      "solution": "Subtract 5 from both sides, then divide by 8. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 8x + 6 = 30 for real x.",
+      "expression": "(30-6)/8",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "6",
+        "D": "3"
+      },
+      "answer": "D",
+      "solution": "Subtract 6 from both sides, then divide by 8. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 9x + 6 = 33 for real x.",
+      "expression": "(33-6)/9",
+      "options": {
+        "A": "3",
+        "B": "5",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "A",
+      "solution": "Subtract 6 from both sides, then divide by 9. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 10x + 6 = 36 for real x.",
+      "expression": "(36-6)/10",
+      "options": {
+        "A": "4",
+        "B": "3",
+        "C": "6",
+        "D": "7"
+      },
+      "answer": "B",
+      "solution": "Subtract 6 from both sides, then divide by 10. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "Solve 11x + 6 = 39 for real x.",
+      "expression": "(39-6)/11",
+      "options": {
+        "A": "4",
+        "B": "5",
+        "C": "3",
+        "D": "7"
+      },
+      "answer": "C",
+      "solution": "Subtract 6 from both sides, then divide by 11. x = 3.",
+      "node_id": "math.equations",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.equations"
+    },
+    {
+      "stem": "A rectangle has side lengths 2 and 4 units. Find its area in square units.",
+      "expression": "2*4",
+      "options": {
+        "A": "9",
+        "B": "8",
+        "C": "11",
+        "D": "12"
+      },
+      "answer": "B",
+      "solution": "Area is length times width: 2 × 4 = 8 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 3 and 4 units. Find its area in square units.",
+      "expression": "3*4",
+      "options": {
+        "A": "13",
+        "B": "14",
+        "C": "12",
+        "D": "16"
+      },
+      "answer": "C",
+      "solution": "Area is length times width: 3 × 4 = 12 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 4 and 4 units. Find its area in square units.",
+      "expression": "4*4",
+      "options": {
+        "A": "17",
+        "B": "18",
+        "C": "19",
+        "D": "16"
+      },
+      "answer": "D",
+      "solution": "Area is length times width: 4 × 4 = 16 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 5 and 4 units. Find its area in square units.",
+      "expression": "5*4",
+      "options": {
+        "A": "20",
+        "B": "22",
+        "C": "23",
+        "D": "24"
+      },
+      "answer": "A",
+      "solution": "Area is length times width: 5 × 4 = 20 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 1,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 5 and 5 units. Find its area in square units.",
+      "expression": "5*5",
+      "options": {
+        "A": "26",
+        "B": "27",
+        "C": "25",
+        "D": "29"
+      },
+      "answer": "C",
+      "solution": "Area is length times width: 5 × 5 = 25 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 6 and 5 units. Find its area in square units.",
+      "expression": "6*5",
+      "options": {
+        "A": "31",
+        "B": "32",
+        "C": "33",
+        "D": "30"
+      },
+      "answer": "D",
+      "solution": "Area is length times width: 6 × 5 = 30 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 7 and 5 units. Find its area in square units.",
+      "expression": "7*5",
+      "options": {
+        "A": "35",
+        "B": "37",
+        "C": "38",
+        "D": "39"
+      },
+      "answer": "A",
+      "solution": "Area is length times width: 7 × 5 = 35 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 8 and 5 units. Find its area in square units.",
+      "expression": "8*5",
+      "options": {
+        "A": "41",
+        "B": "40",
+        "C": "43",
+        "D": "44"
+      },
+      "answer": "B",
+      "solution": "Area is length times width: 8 × 5 = 40 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 2,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 8 and 6 units. Find its area in square units.",
+      "expression": "8*6",
+      "options": {
+        "A": "49",
+        "B": "50",
+        "C": "51",
+        "D": "48"
+      },
+      "answer": "D",
+      "solution": "Area is length times width: 8 × 6 = 48 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 9 and 6 units. Find its area in square units.",
+      "expression": "9*6",
+      "options": {
+        "A": "54",
+        "B": "56",
+        "C": "57",
+        "D": "58"
+      },
+      "answer": "A",
+      "solution": "Area is length times width: 9 × 6 = 54 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 10 and 6 units. Find its area in square units.",
+      "expression": "10*6",
+      "options": {
+        "A": "61",
+        "B": "60",
+        "C": "63",
+        "D": "64"
+      },
+      "answer": "B",
+      "solution": "Area is length times width: 10 × 6 = 60 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A rectangle has side lengths 11 and 6 units. Find its area in square units.",
+      "expression": "11*6",
+      "options": {
+        "A": "67",
+        "B": "68",
+        "C": "66",
+        "D": "70"
+      },
+      "answer": "C",
+      "solution": "Area is length times width: 11 × 6 = 66 square units.",
+      "node_id": "math.geometry",
+      "subject": "math",
+      "tier": 3,
+      "expected_unit": "",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "math.geometry"
+    },
+    {
+      "stem": "A cart moves at a constant 2 m/s for 4 s along a straight line. What distance does it travel?",
+      "expression": "2*4",
+      "options": {
+        "A": "9 m",
+        "B": "8 m",
+        "C": "11 m",
+        "D": "12 m"
+      },
+      "answer": "B",
+      "solution": "For constant speed, distance = speed × time = 2 × 4 = 8 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 3 m/s for 4 s along a straight line. What distance does it travel?",
+      "expression": "3*4",
+      "options": {
+        "A": "13 m",
+        "B": "14 m",
+        "C": "12 m",
+        "D": "16 m"
+      },
+      "answer": "C",
+      "solution": "For constant speed, distance = speed × time = 3 × 4 = 12 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 4 m/s for 4 s along a straight line. What distance does it travel?",
+      "expression": "4*4",
+      "options": {
+        "A": "17 m",
+        "B": "18 m",
+        "C": "19 m",
+        "D": "16 m"
+      },
+      "answer": "D",
+      "solution": "For constant speed, distance = speed × time = 4 × 4 = 16 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 5 m/s for 4 s along a straight line. What distance does it travel?",
+      "expression": "5*4",
+      "options": {
+        "A": "20 m",
+        "B": "22 m",
+        "C": "23 m",
+        "D": "24 m"
+      },
+      "answer": "A",
+      "solution": "For constant speed, distance = speed × time = 5 × 4 = 20 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 5 m/s for 5 s along a straight line. What distance does it travel?",
+      "expression": "5*5",
+      "options": {
+        "A": "26 m",
+        "B": "27 m",
+        "C": "25 m",
+        "D": "29 m"
+      },
+      "answer": "C",
+      "solution": "For constant speed, distance = speed × time = 5 × 5 = 25 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 6 m/s for 5 s along a straight line. What distance does it travel?",
+      "expression": "6*5",
+      "options": {
+        "A": "31 m",
+        "B": "32 m",
+        "C": "33 m",
+        "D": "30 m"
+      },
+      "answer": "D",
+      "solution": "For constant speed, distance = speed × time = 6 × 5 = 30 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 7 m/s for 5 s along a straight line. What distance does it travel?",
+      "expression": "7*5",
+      "options": {
+        "A": "35 m",
+        "B": "37 m",
+        "C": "38 m",
+        "D": "39 m"
+      },
+      "answer": "A",
+      "solution": "For constant speed, distance = speed × time = 7 × 5 = 35 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 8 m/s for 5 s along a straight line. What distance does it travel?",
+      "expression": "8*5",
+      "options": {
+        "A": "41 m",
+        "B": "40 m",
+        "C": "43 m",
+        "D": "44 m"
+      },
+      "answer": "B",
+      "solution": "For constant speed, distance = speed × time = 8 × 5 = 40 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 8 m/s for 6 s along a straight line. What distance does it travel?",
+      "expression": "8*6",
+      "options": {
+        "A": "49 m",
+        "B": "50 m",
+        "C": "51 m",
+        "D": "48 m"
+      },
+      "answer": "D",
+      "solution": "For constant speed, distance = speed × time = 8 × 6 = 48 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 9 m/s for 6 s along a straight line. What distance does it travel?",
+      "expression": "9*6",
+      "options": {
+        "A": "54 m",
+        "B": "56 m",
+        "C": "57 m",
+        "D": "58 m"
+      },
+      "answer": "A",
+      "solution": "For constant speed, distance = speed × time = 9 × 6 = 54 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 10 m/s for 6 s along a straight line. What distance does it travel?",
+      "expression": "10*6",
+      "options": {
+        "A": "61 m",
+        "B": "60 m",
+        "C": "63 m",
+        "D": "64 m"
+      },
+      "answer": "B",
+      "solution": "For constant speed, distance = speed × time = 10 × 6 = 60 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A cart moves at a constant 11 m/s for 6 s along a straight line. What distance does it travel?",
+      "expression": "11*6",
+      "options": {
+        "A": "67 m",
+        "B": "68 m",
+        "C": "66 m",
+        "D": "70 m"
+      },
+      "answer": "C",
+      "solution": "For constant speed, distance = speed × time = 11 × 6 = 66 m.",
+      "node_id": "physics.motion",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.motion"
+    },
+    {
+      "stem": "A constant net force of 8 N acts on a 4 kg mass. What is its acceleration in the force direction?",
+      "expression": "8/4",
+      "options": {
+        "A": "3 m/s^2",
+        "B": "2 m/s^2",
+        "C": "5 m/s^2",
+        "D": "6 m/s^2"
+      },
+      "answer": "B",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 8/4 = 2 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 12 N acts on a 4 kg mass. What is its acceleration in the force direction?",
+      "expression": "12/4",
+      "options": {
+        "A": "4 m/s^2",
+        "B": "5 m/s^2",
+        "C": "3 m/s^2",
+        "D": "7 m/s^2"
+      },
+      "answer": "C",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 12/4 = 3 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 16 N acts on a 4 kg mass. What is its acceleration in the force direction?",
+      "expression": "16/4",
+      "options": {
+        "A": "5 m/s^2",
+        "B": "6 m/s^2",
+        "C": "7 m/s^2",
+        "D": "4 m/s^2"
+      },
+      "answer": "D",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 16/4 = 4 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 20 N acts on a 4 kg mass. What is its acceleration in the force direction?",
+      "expression": "20/4",
+      "options": {
+        "A": "5 m/s^2",
+        "B": "7 m/s^2",
+        "C": "8 m/s^2",
+        "D": "9 m/s^2"
+      },
+      "answer": "A",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 20/4 = 5 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 25 N acts on a 5 kg mass. What is its acceleration in the force direction?",
+      "expression": "25/5",
+      "options": {
+        "A": "6 m/s^2",
+        "B": "7 m/s^2",
+        "C": "5 m/s^2",
+        "D": "9 m/s^2"
+      },
+      "answer": "C",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 25/5 = 5 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 30 N acts on a 5 kg mass. What is its acceleration in the force direction?",
+      "expression": "30/5",
+      "options": {
+        "A": "7 m/s^2",
+        "B": "8 m/s^2",
+        "C": "9 m/s^2",
+        "D": "6 m/s^2"
+      },
+      "answer": "D",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 30/5 = 6 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 35 N acts on a 5 kg mass. What is its acceleration in the force direction?",
+      "expression": "35/5",
+      "options": {
+        "A": "7 m/s^2",
+        "B": "9 m/s^2",
+        "C": "10 m/s^2",
+        "D": "11 m/s^2"
+      },
+      "answer": "A",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 35/5 = 7 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 40 N acts on a 5 kg mass. What is its acceleration in the force direction?",
+      "expression": "40/5",
+      "options": {
+        "A": "9 m/s^2",
+        "B": "8 m/s^2",
+        "C": "11 m/s^2",
+        "D": "12 m/s^2"
+      },
+      "answer": "B",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 40/5 = 8 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 48 N acts on a 6 kg mass. What is its acceleration in the force direction?",
+      "expression": "48/6",
+      "options": {
+        "A": "9 m/s^2",
+        "B": "10 m/s^2",
+        "C": "11 m/s^2",
+        "D": "8 m/s^2"
+      },
+      "answer": "D",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 48/6 = 8 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 54 N acts on a 6 kg mass. What is its acceleration in the force direction?",
+      "expression": "54/6",
+      "options": {
+        "A": "9 m/s^2",
+        "B": "11 m/s^2",
+        "C": "12 m/s^2",
+        "D": "13 m/s^2"
+      },
+      "answer": "A",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 54/6 = 9 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 60 N acts on a 6 kg mass. What is its acceleration in the force direction?",
+      "expression": "60/6",
+      "options": {
+        "A": "11 m/s^2",
+        "B": "10 m/s^2",
+        "C": "13 m/s^2",
+        "D": "14 m/s^2"
+      },
+      "answer": "B",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 60/6 = 10 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant net force of 66 N acts on a 6 kg mass. What is its acceleration in the force direction?",
+      "expression": "66/6",
+      "options": {
+        "A": "12 m/s^2",
+        "B": "13 m/s^2",
+        "C": "11 m/s^2",
+        "D": "15 m/s^2"
+      },
+      "answer": "C",
+      "solution": "Newton’s second law gives acceleration = net force / mass = 66/6 = 11 m/s².",
+      "node_id": "physics.forces",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "m/s^2",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.forces"
+    },
+    {
+      "stem": "A constant force of 2 N acts parallel to a displacement of 4 m. What work is done by this force?",
+      "expression": "2*4",
+      "options": {
+        "A": "9 J",
+        "B": "8 J",
+        "C": "11 J",
+        "D": "12 J"
+      },
+      "answer": "B",
+      "solution": "Work = force × displacement when parallel: 2 × 4 = 8 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 3 N acts parallel to a displacement of 4 m. What work is done by this force?",
+      "expression": "3*4",
+      "options": {
+        "A": "13 J",
+        "B": "14 J",
+        "C": "12 J",
+        "D": "16 J"
+      },
+      "answer": "C",
+      "solution": "Work = force × displacement when parallel: 3 × 4 = 12 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 4 N acts parallel to a displacement of 4 m. What work is done by this force?",
+      "expression": "4*4",
+      "options": {
+        "A": "17 J",
+        "B": "18 J",
+        "C": "19 J",
+        "D": "16 J"
+      },
+      "answer": "D",
+      "solution": "Work = force × displacement when parallel: 4 × 4 = 16 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 5 N acts parallel to a displacement of 4 m. What work is done by this force?",
+      "expression": "5*4",
+      "options": {
+        "A": "20 J",
+        "B": "22 J",
+        "C": "23 J",
+        "D": "24 J"
+      },
+      "answer": "A",
+      "solution": "Work = force × displacement when parallel: 5 × 4 = 20 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 1,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 5 N acts parallel to a displacement of 5 m. What work is done by this force?",
+      "expression": "5*5",
+      "options": {
+        "A": "26 J",
+        "B": "27 J",
+        "C": "25 J",
+        "D": "29 J"
+      },
+      "answer": "C",
+      "solution": "Work = force × displacement when parallel: 5 × 5 = 25 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 6 N acts parallel to a displacement of 5 m. What work is done by this force?",
+      "expression": "6*5",
+      "options": {
+        "A": "31 J",
+        "B": "32 J",
+        "C": "33 J",
+        "D": "30 J"
+      },
+      "answer": "D",
+      "solution": "Work = force × displacement when parallel: 6 × 5 = 30 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 7 N acts parallel to a displacement of 5 m. What work is done by this force?",
+      "expression": "7*5",
+      "options": {
+        "A": "35 J",
+        "B": "37 J",
+        "C": "38 J",
+        "D": "39 J"
+      },
+      "answer": "A",
+      "solution": "Work = force × displacement when parallel: 7 × 5 = 35 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 8 N acts parallel to a displacement of 5 m. What work is done by this force?",
+      "expression": "8*5",
+      "options": {
+        "A": "41 J",
+        "B": "40 J",
+        "C": "43 J",
+        "D": "44 J"
+      },
+      "answer": "B",
+      "solution": "Work = force × displacement when parallel: 8 × 5 = 40 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 2,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 8 N acts parallel to a displacement of 6 m. What work is done by this force?",
+      "expression": "8*6",
+      "options": {
+        "A": "49 J",
+        "B": "50 J",
+        "C": "51 J",
+        "D": "48 J"
+      },
+      "answer": "D",
+      "solution": "Work = force × displacement when parallel: 8 × 6 = 48 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 9 N acts parallel to a displacement of 6 m. What work is done by this force?",
+      "expression": "9*6",
+      "options": {
+        "A": "54 J",
+        "B": "56 J",
+        "C": "57 J",
+        "D": "58 J"
+      },
+      "answer": "A",
+      "solution": "Work = force × displacement when parallel: 9 × 6 = 54 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 10 N acts parallel to a displacement of 6 m. What work is done by this force?",
+      "expression": "10*6",
+      "options": {
+        "A": "61 J",
+        "B": "60 J",
+        "C": "63 J",
+        "D": "64 J"
+      },
+      "answer": "B",
+      "solution": "Work = force × displacement when parallel: 10 × 6 = 60 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    },
+    {
+      "stem": "A constant force of 11 N acts parallel to a displacement of 6 m. What work is done by this force?",
+      "expression": "11*6",
+      "options": {
+        "A": "67 J",
+        "B": "68 J",
+        "C": "66 J",
+        "D": "70 J"
+      },
+      "answer": "C",
+      "solution": "Work = force × displacement when parallel: 11 × 6 = 66 J.",
+      "node_id": "physics.energy",
+      "subject": "physics",
+      "tier": 3,
+      "expected_unit": "J",
+      "provenance": "hand-authored parameterized development fixture; tiers provisional",
+      "variant_family": "physics.energy"
+    }
+  ]
+}

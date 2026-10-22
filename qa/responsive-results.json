@@ -1,0 +1,26 @@
+[
+  {
+    "background": "rgb(17, 16, 24)",
+    "overflow": false,
+    "scrollWidth": 360,
+    "width": 375
+  },
+  {
+    "background": "rgb(17, 16, 24)",
+    "overflow": false,
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "background": "rgb(17, 16, 24)",
+    "overflow": false,
+    "scrollWidth": 1009,
+    "width": 1024
+  },
+  {
+    "background": "rgb(17, 16, 24)",
+    "overflow": false,
+    "scrollWidth": 1425,
+    "width": 1440
+  }
+]

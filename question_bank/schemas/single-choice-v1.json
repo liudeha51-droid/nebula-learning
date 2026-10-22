@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "stem": {
+      "maxLength": 2000,
+      "minLength": 10,
+      "title": "Stem",
+      "type": "string"
+    },
+    "options": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Options",
+      "type": "object"
+    },
+    "answer": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "title": "Answer",
+      "type": "string"
+    },
+    "solution": {
+      "maxLength": 4000,
+      "minLength": 10,
+      "title": "Solution",
+      "type": "string"
+    },
+    "node_id": {
+      "title": "Node Id",
+      "type": "string"
+    },
+    "subject": {
+      "enum": [
+        "math",
+        "physics"
+      ],
+      "title": "Subject",
+      "type": "string"
+    },
+    "tier": {
+      "maximum": 5,
+      "minimum": 1,
+      "title": "Tier",
+      "type": "integer"
+    },
+    "expression": {
+      "maxLength": 100,
+      "title": "Expression",
+      "type": "string"
+    },
+    "expected_unit": {
+      "default": "",
+      "maxLength": 30,
+      "title": "Expected Unit",
+      "type": "string"
+    },
+    "provenance": {
+      "title": "Provenance",
+      "type": "string"
+    },
+    "variant_family": {
+      "title": "Variant Family",
+      "type": "string"
+    }
+  },
+  "required": [
+    "stem",
+    "options",
+    "answer",
+    "solution",
+    "node_id",
+    "subject",
+    "tier",
+    "expression",
+    "provenance",
+    "variant_family"
+  ],
+  "title": "QuestionSpec",
+  "type": "object"
+}

@@ -1,0 +1,43 @@
+/** Requires an offline-provisioned isolated administrator fixture. No role bypass API. */
+import assert from 'node:assert/strict';
+export const lastRun=[];
+export async function validateAdmin(tab,base='http://127.0.0.1:3410') {
+ const p=tab.playwright,results=lastRun;results.length=0;
+ const pass=name=>results.push({name,status:'passed',at:new Date().toISOString()});
+ const message=()=>p.locator('.operation-message');
+ await tab.goto(base+'/admin');
+ await p.locator('code').waitFor({state:'visible'});
+ const original=await p.locator('code').innerText();pass('administrator overview returns persisted active release');
+ await p.getByRole('link',{name:'Question bank',exact:true}).click();
+ await p.locator('.question-list-item').filter({hasText:'fixture-000-v1'}).click();
+ await p.getByRole('heading',{name:'Verification evidence',exact:true}).waitFor({state:'visible'});pass('administrator inspects question key, solution and labelled review evidence');
+ await p.getByRole('button',{name:'Create preserved revision draft',exact:true}).click();
+ await message().filter({hasText:'id'}).waitFor({state:'visible'});
+ const revision=JSON.parse(await message().innerText()).id;
+ await p.locator('.question-list-item').filter({hasText:revision}).click();
+ await p.getByRole('button',{name:'revalidate',exact:true}).click();
+ await message().filter({hasText:'approved'}).waitFor({state:'visible'});pass('new immutable revision passes the required fixture verification chain');
+ await p.getByRole('button',{name:'reject',exact:true}).click();
+ await message().filter({hasText:'rejected'}).waitFor({state:'visible'});pass('administrator rejection is stored without modifying the original released version');
+ await p.getByRole('link',{name:'Bank releases',exact:true}).click();
+ await p.getByRole('button',{name:'Create empty candidate (failure test)',exact:true}).click();
+ await message().filter({hasText:'id'}).waitFor({state:'visible'});
+ const bad=JSON.parse(await message().innerText()).id;
+ const badPanel=p.locator('.release-row').filter({hasText:bad});
+ await badPanel.getByRole('button',{name:'Validate coverage & evidence',exact:true}).click();
+ await message().filter({hasText:'Missing coverage'}).waitFor({state:'visible'});
+ await badPanel.getByRole('button',{name:'Activate / rollback to this release',exact:true}).click();
+ await message().filter({hasText:/Release failed validation/}).waitFor({state:'visible'});
+ assert.equal(await p.locator('.release-row').filter({hasText:original}).getByText('ACTIVE',{exact:true}).count(),1);pass('invalid release fails validation and cannot replace the active pointer');
+ await p.getByRole('button',{name:'Build candidate from active bank',exact:true}).click();
+ await message().filter({hasText:'id'}).waitFor({state:'visible'});
+ const good=JSON.parse(await message().innerText()).id;
+ const goodPanel=p.locator('.release-row').filter({hasText:good});
+ await goodPanel.getByRole('button',{name:'Validate coverage & evidence',exact:true}).click();
+ await message().filter({hasText:'"valid":true'}).waitFor({state:'visible'});
+ await goodPanel.getByRole('button',{name:'Activate / rollback to this release',exact:true}).click();
+ await goodPanel.getByText('ACTIVE',{exact:true}).waitFor({state:'visible'});pass('valid development candidate activates transactionally');
+ await p.locator('.release-row').filter({hasText:original}).getByRole('button',{name:'Activate / rollback to this release',exact:true}).click();
+ await p.locator('.release-row').filter({hasText:original}).getByText('ACTIVE',{exact:true}).waitFor({state:'visible'});pass('rollback restores the original active release without deleting history');
+ return {results,original,activatedCandidate:good,rejectedCandidate:bad,revision,fixture:'Same isolated development learner temporarily provisioned offline; role restored after test.'};
+}

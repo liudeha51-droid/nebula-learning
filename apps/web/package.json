@@ -1,0 +1,39 @@
+{
+  "name": "nebula-learning-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 3410",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3410",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "node ../../scripts/browser-e2e-instructions.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "lucide-react": "^0.468.0",
+    "katex": "^0.16.22",
+    "mathlive": "0.111.1",
+    "recharts": "^3.3.0",
+    "cytoscape": "^3.33.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/node": "^24.10.0",
+    "@types/katex": "^0.16.7",
+    "@types/cytoscape": "^3.21.9",
+    "tailwindcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.16",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.4.2",
+    "vitest": "^4.0.3",
+    "@playwright/test": "^1.56.1"
+  },
+  "type": "module"
+}

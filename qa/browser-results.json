@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "name": "profile settings persist through backend",
+      "status": "passed",
+      "at": "2026-10-22T09:57:26.902Z"
+    },
+    {
+      "name": "complete eight-question diagnostic with backend grading and delayed disclosure",
+      "status": "passed",
+      "at": "2026-10-22T09:57:33.581Z"
+    },
+    {
+      "name": "reload retains submitted answer and cannot bypass delay",
+      "status": "passed",
+      "at": "2026-10-22T09:57:34.023Z"
+    },
+    {
+      "name": "backend taxonomy selection offers covered practice",
+      "status": "passed",
+      "at": "2026-10-22T09:57:34.475Z"
+    },
+    {
+      "name": "practice has the same mandatory ten-minute disclosure gate",
+      "status": "passed",
+      "at": "2026-10-22T09:57:35.269Z"
+    },
+    {
+      "name": "notes and editable LaTeX save to backend",
+      "status": "passed",
+      "at": "2026-10-22T09:57:35.589Z"
+    },
+    {
+      "name": "scientific calculator yields 5 through real backend",
+      "status": "passed",
+      "at": "2026-10-22T09:57:36.173Z"
+    },
+    {
+      "name": "degree/radian switch changes evaluation correctly",
+      "status": "passed",
+      "at": "2026-10-22T09:57:36.752Z"
+    },
+    {
+      "name": "saved formula source survives full-page reload",
+      "status": "passed",
+      "at": "2026-10-22T09:57:36.937Z"
+    },
+    {
+      "name": "learning analytics route uses evidence-aware presentation",
+      "status": "passed",
+      "at": "2026-10-22T09:57:37.106Z"
+    },
+    {
+      "name": "physics knowledge graph route renders",
+      "status": "passed",
+      "at": "2026-10-22T09:57:37.290Z"
+    },
+    {
+      "name": "student is denied administrative question access in the UI",
+      "status": "passed",
+      "at": "2026-10-22T09:57:37.469Z"
+    }
+  ],
+  "diagnosticUrl": "http://127.0.0.1:3410/workspace?session=269a5b1c-c08d-4f50-bba6-7c33eb3303a5",
+  "limitations": [
+    "Real ten-minute elapsed reveal is verified separately.",
+    "Admin release workflow is API-integration tested, not part of this student browser suite."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "name": "administrator overview returns persisted active release",
+      "status": "passed",
+      "at": "2026-10-22T10:02:16.871Z"
+    },
+    {
+      "name": "administrator inspects question key, solution and labelled review evidence",
+      "status": "passed",
+      "at": "2026-10-22T10:02:17.322Z"
+    },
+    {
+      "name": "new immutable revision passes the required fixture verification chain",
+      "status": "passed",
+      "at": "2026-10-22T10:02:18.174Z"
+    },
+    {
+      "name": "administrator rejection is stored without modifying the original released version",
+      "status": "passed",
+      "at": "2026-10-22T10:02:18.453Z"
+    },
+    {
+      "name": "invalid release fails validation and cannot replace the active pointer",
+      "status": "passed",
+      "at": "2026-10-22T10:02:19.471Z"
+    },
+    {
+      "name": "valid development candidate activates transactionally",
+      "status": "passed",
+      "at": "2026-10-22T10:02:20.324Z"
+    },
+    {
+      "name": "rollback restores the original active release without deleting history",
+      "status": "passed",
+      "at": "2026-10-22T10:02:20.602Z"
+    }
+  ],
+  "original": "development-fixtures-v1",
+  "activatedCandidate": "candidate-3591734b-f01d-4195-a855-093a992d2ba6",
+  "rejectedCandidate": "candidate-3d0f0b53-1863-4736-b9ab-9589f592826b",
+  "revision": "8d294032-70c2-4823-a715-7bffe702a446",
+  "fixture": "Same isolated development learner temporarily provisioned offline; role restored after test."
+}
