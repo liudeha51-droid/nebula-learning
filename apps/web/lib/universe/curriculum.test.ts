@@ -63,7 +63,7 @@ describe('animation engine coverage', () => {
     }
   });
   it('every storyboard follows the discovery structure and every challenge is self-consistent', () => {
-    for (const p of POINTS.filter(q => LOGIC[q.animation_type])) {
+    for (const p of POINTS) {
       const logic = LOGIC[p.animation_type]!; const c = logic.parse(p.interaction_config);
       const scenes = logic.scenes(c);
       expect(scenes.length, p.id).toBeGreaterThanOrEqual(5);

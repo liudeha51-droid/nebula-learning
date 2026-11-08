@@ -178,7 +178,7 @@ function PointPage({point, reduced}: {point: KnowledgePoint; reduced: boolean}) 
         {level === 6 && <Extend point={point}/>}
       </>}
     </SoundContext.Provider>
-    <nav className="u-pager">{prev && <Link href={`/universe/k/${prev.id}`} className="button"><ArrowLeft size={15}/>{prev.title}</Link>}<span/>{next && <Link href={`/universe/k/${next.id}`} className="button">{next.title}<ArrowRight size={15}/></Link>}</nav>
+    <nav className="u-pager" aria-label="Neighbouring knowledge points">{prev && <Link href={`/universe/k/${prev.id}`} className="button"><ArrowLeft size={15}/><span className="u-pager-label">{prev.title}</span></Link>}<span/>{next && <Link href={`/universe/k/${next.id}`} className="button"><span className="u-pager-label">{next.title}</span><ArrowRight size={15}/></Link>}</nav>
   </div>;
 }
 

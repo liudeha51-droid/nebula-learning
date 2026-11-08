@@ -28,6 +28,8 @@ import {coordinateView} from './coordinate';
 import {transformView} from './transform';
 import {factorView} from './factor';
 import {sortingView} from './sorting';
+import {shapesView} from './shapes';
+import {reasoningView} from './reasoning';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -49,4 +51,6 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   transform: transformView,
   factor: factorView,
   sorting: sortingView,
+  shapes: shapesView,
+  reasoning: reasoningView,
 };

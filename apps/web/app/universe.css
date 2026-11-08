@@ -55,7 +55,7 @@
 .u-levels button.done b{background:var(--g);color:#1b1726;border-color:var(--g)}
 .u-level-blurb{margin:4px 0 14px}
 .u-hint{display:flex;gap:8px;align-items:center;color:#d8d2e8;font-size:13px}
-.u-pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px}.u-pager span{flex:1}.u-pager .button{max-width:45%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-flex}
+.u-pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px}.u-pager span{flex:1}.u-pager .button{max-width:45%;min-width:0;display:inline-flex}.u-pager-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 
 /* Stage & player */
 .u-stage{margin:0;border:1px solid var(--line);border-radius:14px;background:radial-gradient(ellipse at 50% 0%,#2a2540,#15141d 70%);overflow:hidden}
@@ -155,6 +155,7 @@
   .u-connections{grid-template-columns:1fr}.u-self{max-width:none}
   .u-readout{margin-left:0;width:100%}
   .u-map-detail{flex-direction:column;align-items:flex-start}
-  .u-pager .button{max-width:48%}
+  .u-pager .button{max-width:48%;font-size:12px}
+  .u-scene-tag{display:none}
 }
 @media (prefers-reduced-motion:reduce){.u-world,.u-point-card{transition:none}.u-world:hover,.u-point-card:hover{transform:none}}

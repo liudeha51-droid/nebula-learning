@@ -76,7 +76,7 @@ export function MathAnimationPlayer({logic, view, config, reduced, prefs, setPre
       <div className="u-player-frame">
         <view.Scene c={c} scene={sceneIndex} p={p}/>
         <span className="u-scene-tag">Scene {String(sceneIndex + 1).padStart(2, '0')} · {scene.purpose}</span>
-        {gate && !predicted && <div className="u-gate"><StudentPrediction prediction={prediction} compact onAnswered={ok => { onPredict(ok); }} onWatch={() => { setGate(false); setPlaying(true); }}/>
+        {gate && <div className="u-gate"><StudentPrediction prediction={prediction} compact onAnswered={ok => { onPredict(ok); }} onWatch={() => { setGate(false); setPlaying(true); }}/>
           <button className="text-button" onClick={() => { setGate(false); onPredict(false); setPlaying(true); }}>Skip prediction</button></div>}
       </div>
       {prefs.captions && <div className="u-caption" aria-live="polite"><strong>{scene.title}</strong> {scene.narration}</div>}

@@ -28,6 +28,8 @@ Open the local application at **http://127.0.0.1:3410** after starting both serv
 - Dedicated Celery worker/beat configuration with a 14-day default refresh check. Unconfigured generation records a blocked job and keeps the active bank unchanged.
 - Optional server-only JSON gateway adapter classes with timeouts, retry/call budgets and redacted telemetry; **only mocked HTTP transports were tested**. Not connected to unattended generation.
 
+- **Mathematics Universe** (`/universe`): an animated, interactive Grades 1–6 curriculum. It has 196 knowledge points in 47 chapters with explicit prerequisite relationships and is driven by 28 animation engines. Each knowledge point has six learning levels (Observe → Extend), a prediction gate before every reveal, generated challenges, and a cross-grade knowledge map. Progress is stored through `/api/v1/universe/progress` (Alembic `0002`). See [docs/universe.md](docs/universe.md) for the architecture, the verification performed and the remaining limitations.
+
 See [known limitations](docs/limitations.md) and [development checklist](docs/checklist.md) before interpreting this list as completion of the master specification.
 
 ## Architecture

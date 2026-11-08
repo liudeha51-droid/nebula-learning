@@ -26,6 +26,8 @@ import {coordinate} from './coordinate';
 import {transform} from './transform';
 import {factor} from './factor';
 import {sorting} from './sorting';
+import {shapes} from './shapes';
+import {reasoning} from './reasoning';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -48,4 +50,6 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   transform: transform,
   factor: factor,
   sorting: sorting,
+  shapes: shapes,
+  reasoning: reasoning,
 };
