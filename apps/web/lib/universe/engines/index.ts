@@ -12,6 +12,7 @@ import {decimal} from './decimal';
 import {numberLine} from './number-line';
 import {angle} from './angle';
 import {area} from './area';
+import {circle} from './circle';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -20,4 +21,5 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   'number-line': numberLine,
   angle: angle,
   area: area,
+  circle: circle,
 };
