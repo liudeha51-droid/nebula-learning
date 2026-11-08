@@ -14,6 +14,10 @@ import {angle} from './angle';
 import {area} from './area';
 import {circle} from './circle';
 import {solid} from './solid';
+import {balance} from './balance';
+import {percent} from './percent';
+import {data} from './data';
+import {probability} from './probability';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -24,4 +28,8 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   area: area,
   circle: circle,
   solid: solid,
+  balance: balance,
+  percent: percent,
+  data: data,
+  probability: probability,
 };
