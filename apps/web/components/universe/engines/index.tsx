@@ -10,7 +10,13 @@ import {divisionView} from './division';
 import {lawsView} from './laws';
 import {fractionView} from './fraction';
 
+import {decimalView} from './decimal';
+import {numberLineView} from './number-line';
+import {angleView} from './angle';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
+  decimal: decimalView,
+  'number-line': numberLineView,
+  angle: angleView,
 };

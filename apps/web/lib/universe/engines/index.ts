@@ -8,8 +8,14 @@ import {division} from './division';
 import {laws} from './laws';
 import {fraction} from './fraction';
 
+import {decimal} from './decimal';
+import {numberLine} from './number-line';
+import {angle} from './angle';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   counting, objects, 'place-value': placeValue, column, array, division, laws, fraction,
+  decimal: decimal,
+  'number-line': numberLine,
+  angle: angle,
 };
