@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from hashlib import sha256
 import secrets
 from typing import Literal
-from fastapi import FastAPI, Depends, HTTPException, Request, Response
+from fastapi import FastAPI, Depends, HTTPException, Request, Response, Path
 from pydantic import BaseModel, Field, ConfigDict
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from argon2 import PasswordHasher
 from .config import settings
 from .db import database, now, uid
-from .models import User, Login, Node, Edge, Active, Assessment, Item, Version, Attempt, Note, Release, Member, Evidence, Audit, Job, Review, Mastery
+from .models import User, Login, Node, Edge, Active, Assessment, Item, Version, Attempt, Note, Release, Member, Evidence, Audit, Job, Review, Mastery, UniverseProgress
 from .learning import overlays, next_item, update_mastery, adapt, analytics, synchronize_feedback, feedback_available, FEEDBACK_DELAY_SECONDS
 from .releases import activate, validate_release
 from .calculator import calculate
@@ -270,6 +270,32 @@ def save_note(nid:str,body:NoteBody,user:User=Depends(current),db:Session=Depend
     for key,value in body.model_dump().items(): setattr(n,key,value)
     n.updated=now(); db.flush()
     return {'id':n.id,'saved':True}
+
+
+# Mathematics Universe: the curriculum and animations run in the browser; only progress is persisted here.
+UNIVERSE_KP=r'^g[1-6]-[a-z0-9-]{2,70}$'
+UNIVERSE_MAX_POINTS=500
+
+
+class UniverseLevel(Strict):
+    level:int=Field(ge=1,le=6)
+
+
+@app.get(API+'/universe/progress')
+def universe_progress(user:User=Depends(current),db:Session=Depends(database)):
+    rows=db.scalars(select(UniverseProgress).where(UniverseProgress.user_id==user.id).order_by(UniverseProgress.kp_id))
+    return {'items':[{'kp_id':r.kp_id,'levels':r.levels,'updated':r.updated} for r in rows]}
+
+
+@app.put(API+'/universe/progress/{kp_id}')
+def universe_mark(kp_id:str=Path(pattern=UNIVERSE_KP,max_length=80),body:UniverseLevel=...,user:User=Depends(current),db:Session=Depends(database)):
+    row=db.get(UniverseProgress,(user.id,kp_id))
+    if not row:
+        count=db.scalar(select(func.count()).select_from(UniverseProgress).where(UniverseProgress.user_id==user.id))
+        if count>=UNIVERSE_MAX_POINTS: raise HTTPException(409,'Progress record limit reached')
+        row=UniverseProgress(user_id=user.id,kp_id=kp_id,levels=0); db.add(row)
+    row.levels=row.levels|(1<<(body.level-1)); row.updated=now(); db.flush()
+    return {'kp_id':kp_id,'levels':row.levels}
 
 
 @app.get(API+'/analytics')

@@ -186,3 +186,13 @@ class Audit(Base):
     action: Mapped[str] = mapped_column(String(100))
     detail: Mapped[dict] = mapped_column(JSON)
     created: Mapped[object] = mapped_column(DateTime, default=now)
+
+
+class UniverseProgress(Base):
+    """Mathematics Universe level completion: a 6-bit mask per learner and knowledge point."""
+    __tablename__ = 'universe_progress'
+    user_id: Mapped[str] = mapped_column(ForeignKey('users.id'), primary_key=True)
+    kp_id: Mapped[str] = mapped_column(String(80), primary_key=True)
+    levels: Mapped[int] = mapped_column(Integer, default=0)
+    updated: Mapped[object] = mapped_column(DateTime, default=now)
+    __table_args__ = (CheckConstraint('levels >= 0 AND levels < 64', name='ck_universe_levels'),)
