@@ -1,8 +1,15 @@
 import type {EngineLogic, EngineType} from '../types';
 import {counting} from './counting';
+import {objects} from './objects';
+import {placeValue} from './place-value';
+import {column} from './column';
+import {array} from './array';
+import {division} from './division';
+import {laws} from './laws';
+import {fraction} from './fraction';
 
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
-  counting,
+  counting, objects, 'place-value': placeValue, column, array, division, laws, fraction,
 };

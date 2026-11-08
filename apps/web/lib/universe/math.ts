@@ -72,19 +72,19 @@ export const bool = (v: unknown, d: boolean) => (typeof v === 'boolean' ? v : d)
 
 /** Checks a learner's numeric or text answer. Accepts fractions like "3/4" and decimals. */
 export function checkAnswer(input: string, answer: number | string, tolerance = 0): boolean {
-  const raw = input.trim().replace(/，/g, ',').replace(/\s+/g, '');
-  if (typeof answer === 'string') return raw.toLowerCase() === answer.replace(/\s+/g, '').toLowerCase();
+  const raw = input.trim().replace(/，/g, ',').replace(/\s+/g, ' ');
+  if (typeof answer === 'string') return raw.replace(/\s+/g, '').toLowerCase() === answer.replace(/\s+/g, '').toLowerCase();
   const tol = Math.max(tolerance, 1e-9);
   // "25%" may mean the number 25 (answer given in percent units) or the value 0.25.
-  const percent = raw.match(/^(-?\d+(?:\.\d+)?)%$/);
+  const percent = raw.replace(/\s+/g, '').match(/^(-?\d+(?:\.\d+)?)%$/);
   if (percent && Math.abs(Number(percent[1]) - answer) <= tol) return true;
   const parsed = parseNumber(raw);
   return parsed !== null && Math.abs(parsed - answer) <= tol;
 }
 export function parseNumber(raw: string): number | null {
-  const s = raw.replace(/,/g, '');
-  const mixed = s.match(/^(-?\d+)\s*[ +]\s*(\d+)\/(\d+)$/);
+  const mixed = raw.replace(/,/g, '').trim().match(/^(-?\d+)(?:\s+|\s*\+\s*)(\d+)\s*\/\s*(\d+)$/);
   if (mixed) { const w = Number(mixed[1]); const f = Number(mixed[2]) / Number(mixed[3]); return w < 0 ? w - f : w + f; }
+  const s = raw.replace(/,/g, '').replace(/\s+/g, '');
   const frac = s.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
   if (frac) return Number(frac[2]) === 0 ? null : Number(frac[1]) / Number(frac[2]);
   const pct = s.match(/^(-?\d+(?:\.\d+)?)%$/);

@@ -87,7 +87,7 @@ g.chapter('g5-fractions', 'Fractions', '分数的意义和性质与加减法', '
 g.k('g5-fraction-division', 'Fractions as division', '分数与除法', {
   d: 'Sharing 3 cakes among 4 people gives each 3/4 of a cake: a ÷ b = a/b.', t: ['Meaning of fractions', 'Fraction units', 'Fractions and division'],
   o: ['Explain a ÷ b = a/b by sharing', 'Write division results as fractions'], pre: ['g3-several-parts', 'g2-share'], rel: ['g5-improper'],
-  e: 'fraction', c: {mode: 'division-link', a: 3, b: 4}, m: ['Each person gets 1/4', '3 ÷ 4 is impossible'],
+  e: 'fraction', c: {mode: 'division-link', n: 3, d: 4}, m: ['Each person gets 1/4', '3 ÷ 4 is impossible'],
   q: [N('3 cakes shared among 4 people: each gets ?/4 of a cake.', 3, '3 ÷ 4 = 3/4.')],
   x: ['Share 5 pizzas among 3 people. Draw it.'], f: 'a \\div b = \\tfrac{a}{b}\\;(b\\ne 0)',
 });
