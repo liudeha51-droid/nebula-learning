@@ -26,6 +26,8 @@ import {clockView} from './clock';
 import {moneyView} from './money';
 import {coordinateView} from './coordinate';
 import {transformView} from './transform';
+import {factorView} from './factor';
+import {sortingView} from './sorting';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -45,4 +47,6 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   money: moneyView,
   coordinate: coordinateView,
   transform: transformView,
+  factor: factorView,
+  sorting: sortingView,
 };
