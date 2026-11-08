@@ -18,6 +18,10 @@ import {balance} from './balance';
 import {percent} from './percent';
 import {data} from './data';
 import {probability} from './probability';
+import {proportion} from './proportion';
+import {measure} from './measure';
+import {clock} from './clock';
+import {money} from './money';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -32,4 +36,8 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   percent: percent,
   data: data,
   probability: probability,
+  proportion: proportion,
+  measure: measure,
+  clock: clock,
+  money: money,
 };

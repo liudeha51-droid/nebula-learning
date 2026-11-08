@@ -20,6 +20,10 @@ import {balanceView} from './balance';
 import {percentView} from './percent';
 import {dataView} from './data';
 import {probabilityView} from './probability';
+import {proportionView} from './proportion';
+import {measureView} from './measure';
+import {clockView} from './clock';
+import {moneyView} from './money';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -33,4 +37,8 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   percent: percentView,
   data: dataView,
   probability: probabilityView,
+  proportion: proportionView,
+  measure: measureView,
+  clock: clockView,
+  money: moneyView,
 };
