@@ -22,6 +22,8 @@ import {proportion} from './proportion';
 import {measure} from './measure';
 import {clock} from './clock';
 import {money} from './money';
+import {coordinate} from './coordinate';
+import {transform} from './transform';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -40,4 +42,6 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   measure: measure,
   clock: clock,
   money: money,
+  coordinate: coordinate,
+  transform: transform,
 };
