@@ -15,6 +15,7 @@ import {numberLineView} from './number-line';
 import {angleView} from './angle';
 import {areaView} from './area';
 import {circleView} from './circle';
+import {solidView} from './solid';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -23,4 +24,5 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   angle: angleView,
   area: areaView,
   circle: circleView,
+  solid: solidView,
 };
