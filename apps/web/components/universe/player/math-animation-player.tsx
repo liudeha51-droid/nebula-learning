@@ -36,8 +36,7 @@ export function MathAnimationPlayer({logic, view, config, reduced, prefs, setPre
   const local = Math.min(1, Math.max(0, (t - starts[sceneIndex]) / scenes[sceneIndex].duration));
   const p = reduced ? 1 : local;
 
-  // Jump when a parent asks for a specific scene (e.g. "watch it happen" from Discover).
-  useEffect(() => { setT(starts[Math.min(startScene, scenes.length - 1)] ?? 0); }, [startScene, starts, scenes.length]);
+  // A parent jump to a specific scene ("watch it happen") remounts the player via `key`.
 
   const tRef = useRef(t);
   useEffect(() => { tRef.current = t; }, [t]);

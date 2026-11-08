@@ -18,14 +18,14 @@ const PREFS_KEY = 'nebula-universe-prefs-v1';
 const SIGNATURE = ['g6-cake', 'g6-cone-pour', 'g5-parallelogram', 'g1-make-ten', 'g2-commutative', 'g5-equations', 'g6-circle-area', 'g6-frac-divide'];
 
 function usePrefs(): [PlayerPrefs, (p: PlayerPrefs) => void] {
-  const [prefs, setPrefsState] = useState<PlayerPrefs>({muted: false, captions: true, narrate: false});
-  useEffect(() => { try { const raw = localStorage.getItem(PREFS_KEY); if (raw) setPrefsState(p => ({...p, ...JSON.parse(raw)})); } catch { /* ignore */ } }, []);
+  // Rendered only on the client (the shell waits for the session check), so storage can be read lazily.
+  const [prefs, setPrefsState] = useState<PlayerPrefs>(() => { const base = {muted: false, captions: true, narrate: false}; try { const raw = localStorage.getItem(PREFS_KEY); return raw ? {...base, ...JSON.parse(raw)} : base; } catch { return base; } });
   const setPrefs = (p: PlayerPrefs) => { setPrefsState(p); try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch { /* ignore */ } };
   return [prefs, setPrefs];
 }
 function useReducedMotion(profileReduced: boolean) {
-  const [system, setSystem] = useState(false);
-  useEffect(() => { const m = window.matchMedia('(prefers-reduced-motion: reduce)'); setSystem(m.matches); const on = () => setSystem(m.matches); m.addEventListener('change', on); return () => m.removeEventListener('change', on); }, []);
+  const [system, setSystem] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  useEffect(() => { const m = window.matchMedia('(prefers-reduced-motion: reduce)'); const on = () => setSystem(m.matches); m.addEventListener('change', on); return () => m.removeEventListener('change', on); }, []);
   return profileReduced || system;
 }
 
@@ -161,7 +161,7 @@ function PointPage({point, reduced}: {point: KnowledgePoint; reduced: boolean}) 
 
     <SoundContext.Provider value={sound}>
       {!logic || !view ? <Unbuilt point={point}/> : <>
-        {level === 1 && <MathAnimationPlayer logic={logic} view={view} config={point.interaction_config} reduced={reduced} prefs={prefs} setPrefs={setPrefs} startScene={startScene} predicted={predicted} onPredict={onPredict} onComplete={onComplete}/>}
+        {level === 1 && <MathAnimationPlayer key={startScene} logic={logic} view={view} config={point.interaction_config} reduced={reduced} prefs={prefs} setPrefs={setPrefs} startScene={startScene} predicted={predicted} onPredict={onPredict} onComplete={onComplete}/>}
         {level === 2 && <div className="u-explore" onPointerDownCapture={() => mark(point.id, 2)} onKeyDownCapture={e => { if (e.key === 'Enter' || e.key === ' ' || e.key.startsWith('Arrow')) mark(point.id, 2); }}>
           <p className="u-hint"><Sparkles size={15}/>Free exploration: change the numbers, move the objects and watch what stays the same.</p>
           <view.Explore c={logic.parse(point.interaction_config)}/></div>}

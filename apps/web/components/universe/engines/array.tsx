@@ -54,9 +54,9 @@ function AreaModel({a, b, reveal, estimate = false}: {a: number; b: number; reve
   // Width proportional to value, with a minimum so small parts stay readable.
   const scale = (ps: number[], total: number) => { const raw = ps.map(v => Math.max(v, (ps.reduce((s, x) => s + x, 0)) * .12)); const sum = raw.reduce((s, x) => s + x, 0); return raw.map(v => (v / sum) * total); };
   const wa = scale(pa, totalW), hb = scale(pb, totalH);
-  let x = x0;
-  return <g>{pa.map((va, i) => { const cx = x; x += wa[i]; let y = y0;
-    return <g key={i}>{pb.map((vb, j) => { const cy = y; y += hb[j]; const idx = i * pb.length + j; const on = reveal > idx;
+  const xs = wa.map((_, i) => x0 + wa.slice(0, i).reduce((s, v) => s + v, 0)); const ys = hb.map((_, j) => y0 + hb.slice(0, j).reduce((s, v) => s + v, 0));
+  return <g>{pa.map((va, i) => { const cx = xs[i];
+    return <g key={i}>{pb.map((vb, j) => { const cy = ys[j]; const idx = i * pb.length + j; const on = reveal > idx;
       return <g key={j}><rect x={cx} y={cy} width={wa[i] - 3} height={hb[j] - 3} rx={4} fill={[C.hundreds, C.tens, C.ones, C.thousands][(i + j) % 4]} opacity={on ? .55 : .15} stroke="#ffffff33"/>
         {on && <T x={cx + wa[i] / 2} y={cy + hb[j] / 2} size={Math.min(20, wa[i] / 5)} weight={600}>{fmt(va)}×{fmt(vb)}={fmt(va * vb)}</T>}</g>; })}
       <T x={cx + wa[i] / 2} y={y0 - 16} size={18} color={C.ones}>{fmt(va)}</T></g>; })}
