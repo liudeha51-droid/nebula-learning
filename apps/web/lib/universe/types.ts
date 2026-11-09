@@ -5,17 +5,22 @@
  * Only learner progress is persisted (FastAPI `/api/v1/universe/progress`).
  */
 
-export type Grade = 1 | 2 | 3 | 4 | 5 | 6;
+export type Grade = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type Stage = 'primary' | 'junior' | 'senior';
+export const stageOf = (g: Grade): Stage => (g <= 6 ? 'primary' : g <= 9 ? 'junior' : 'senior');
 
-/** The five cross-grade knowledge systems from the curriculum blueprint (Part III). */
-export type DomainId = 'number' | 'operations' | 'relationships' | 'geometry' | 'statistics';
+/** Cross-grade knowledge systems: the five from the primary blueprint (Part III) plus Functions for secondary school. */
+export type DomainId = 'number' | 'operations' | 'relationships' | 'functions' | 'geometry' | 'statistics';
 
 /** Reusable animation engines. One engine serves many knowledge points through `interaction_config`. */
 export type EngineType =
   | 'counting' | 'objects' | 'place-value' | 'column' | 'array' | 'division' | 'laws'
   | 'fraction' | 'decimal' | 'number-line' | 'angle' | 'area' | 'circle' | 'solid'
   | 'balance' | 'measure' | 'clock' | 'money' | 'data' | 'probability' | 'percent'
-  | 'proportion' | 'coordinate' | 'factor' | 'sorting' | 'transform' | 'reasoning' | 'shapes';
+  | 'proportion' | 'coordinate' | 'factor' | 'sorting' | 'transform' | 'reasoning' | 'shapes'
+  // secondary school engines
+  | 'rational' | 'tiles' | 'pythag' | 'geo2' | 'func' | 'inequality' | 'analysis' | 'trig' | 'vector'
+  | 'complex' | 'space' | 'conic' | 'sequence' | 'derivative' | 'combin' | 'distribution' | 'regression' | 'sets';
 
 export type EngineConfig = Record<string, string | number | boolean | number[] | string[]>;
 
@@ -61,10 +66,13 @@ export interface Chapter {
   title: string;
   title_zh: string;
   objective: string;
+  /** Textbook volume (人教版), e.g. 七年级上册 or 选择性必修第一册. */
+  book?: string;
 }
 
 export interface GradeWorld {
   grade: Grade;
+  stage: Stage;
   title: string;
   title_zh: string;
   world: string;

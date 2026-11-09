@@ -28,6 +28,10 @@ import {factor} from './factor';
 import {sorting} from './sorting';
 import {shapes} from './shapes';
 import {reasoning} from './reasoning';
+import {func} from './func';
+import {rational} from './rational';
+import {tiles} from './tiles';
+import {pythag} from './pythag';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -52,4 +56,8 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   sorting: sorting,
   shapes: shapes,
   reasoning: reasoning,
+  func: func,
+  rational: rational,
+  tiles: tiles,
+  pythag: pythag,
 };

@@ -4,8 +4,13 @@ import {LOGIC} from './engines';
 import {checkAnswer, rng} from './math';
 
 describe('six-grade curriculum integrity', () => {
-  it('covers all six grades with chapters and knowledge points', () => {
-    expect(WORLDS).toHaveLength(6);
+  it('covers twelve grades (primary, junior and senior secondary) with chapters and knowledge points', () => {
+    expect(WORLDS).toHaveLength(12);
+    for (const g of [7, 8, 9, 10, 11, 12]) {
+      expect(CHAPTERS.filter(c => c.grade === g).length, `grade ${g}`).toBeGreaterThanOrEqual(3);
+      expect(POINTS.filter(p => p.grade === g).length, `grade ${g}`).toBeGreaterThanOrEqual(10);
+      expect(CHAPTERS.filter(c => c.grade === g).every(c => !!c.book), `grade ${g} chapters name their PEP volume`).toBe(true);
+    }
     for (const g of [1, 2, 3, 4, 5, 6]) {
       expect(CHAPTERS.filter(c => c.grade === g).length).toBeGreaterThanOrEqual(6);
       expect(POINTS.filter(p => p.grade === g).length).toBeGreaterThanOrEqual(20);
@@ -16,7 +21,7 @@ describe('six-grade curriculum integrity', () => {
   it('uses unique, stable, grade-prefixed identifiers', () => {
     const ids = POINTS.map(p => p.id);
     expect(new Set(ids).size).toBe(ids.length);
-    for (const p of POINTS) { expect(p.id).toMatch(/^g[1-6]-[a-z0-9-]+$/); expect(p.id.startsWith(`g${p.grade}-`)).toBe(true); expect(p.animation_id).toBe(`anim-${p.id}`); }
+    for (const p of POINTS) { expect(p.id).toMatch(/^g([1-9]|1[0-2])-[a-z0-9-]+$/); expect(p.id.startsWith(`g${p.grade}-`)).toBe(true); expect(p.animation_id).toBe(`anim-${p.id}`); }
     expect(new Set(CHAPTERS.map(c => c.id)).size).toBe(CHAPTERS.length);
   });
   it('stores explicit relationships that resolve and never point to a later grade as a prerequisite', () => {

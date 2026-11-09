@@ -30,6 +30,10 @@ import {factorView} from './factor';
 import {sortingView} from './sorting';
 import {shapesView} from './shapes';
 import {reasoningView} from './reasoning';
+import {funcView} from './func';
+import {rationalView} from './rational';
+import {tilesView} from './tiles';
+import {pythagView} from './pythag';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -53,4 +57,8 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   sorting: sortingView,
   shapes: shapesView,
   reasoning: reasoningView,
+  func: funcView,
+  rational: rationalView,
+  tiles: tilesView,
+  pythag: pythagView,
 };

@@ -16,8 +16,8 @@ export function gradeBuilder(grade: Grade) {
   const chapters: Chapter[] = []; const points: KnowledgePoint[] = [];
   let current: Chapter | null = null; let domain: DomainId = 'number';
   return {
-    chapter(id: string, title: string, title_zh: string, d: DomainId, objective: string) {
-      current = {id, grade, order: chapters.length + 1, title, title_zh, objective}; domain = d; chapters.push(current);
+    chapter(id: string, title: string, title_zh: string, d: DomainId, objective: string, book?: string) {
+      current = {id, grade, order: chapters.length + 1, title, title_zh, objective, ...(book ? {book} : {})}; domain = d; chapters.push(current);
     },
     k(id: string, title: string, title_zh: string, a: Authoring, d?: DomainId) {
       if (!current) throw new Error('chapter first');
