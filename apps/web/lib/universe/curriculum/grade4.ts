@@ -71,6 +71,13 @@ g.k('g4-div-two-digit', 'Dividing by two-digit numbers: trial quotients', '除�
   x: ['Why does dividing by 29 often need adjusting when you round to 30?'],
 });
 
+g.k('g4-times-circle', 'Signature: Times tables on a circle', '招牌动画：圆上的乘法表', {
+  d: 'Join each of 60 points on a circle to the point twice as far round: the threads draw a heart-shaped cardioid. Let the multiplier drift and new flowers bloom.', t: ['Multiplication patterns', 'Remainders', 'Mathematical art'],
+  o: ['Apply a multiplication rule with wrap-around (remainders)', 'Predict how the picture changes with the multiplier'], pre: ['g4-two-digit-mult', 'g4-div-two-digit'], rel: ['g6-circle-parts'],
+  e: 'journey', c: {mode: 'times', n: 60, m: 2}, m: ['Counting past the last point stops instead of wrapping round', 'A bigger multiplier always makes a bigger picture'],
+  q: [N('10 points, multiplier 2. Point 7 joins point?', 4, '2 × 7 = 14; 14 − 10 = 4.'), M('Multiplier 5 makes how many petals?', ['4', '5', '6'], '4', 'Multiplier m gives m − 1 petals.')],
+  x: ['Draw 36 points on paper and join k to 3k. How many petals?'], f: 'k \\mapsto m k \\bmod n',
+});
 g.chapter('g4-laws', 'Arithmetic Properties', '运算律', 'operations', 'Rearrange and regroup quantities to see why results stay the same.');
 g.k('g4-comm-assoc-add', 'Commutative and associative laws of addition', '加法交换律和结合律', {
   d: 'Swapping or regrouping addends moves objects around but never changes the total.', t: ['Commutative property of addition', 'Associative property of addition'],

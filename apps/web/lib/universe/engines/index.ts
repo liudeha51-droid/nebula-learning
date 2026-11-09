@@ -46,6 +46,7 @@ import {sequence} from './sequence';
 import {derivative} from './derivative';
 import {combin} from './combin';
 import {distribution} from './distribution';
+import {journey} from './journey';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -88,4 +89,5 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   derivative: derivative,
   combin: combin,
   distribution: distribution,
+  journey: journey,
 };

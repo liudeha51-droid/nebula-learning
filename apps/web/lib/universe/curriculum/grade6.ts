@@ -180,6 +180,13 @@ g.k('g6-annulus', 'Rings, semicircles and sectors', '圆环、半圆与扇形', 
   x: ['Find the area of a running track shape.'], f: 'S_{\\text{ring}}=\\pi(R^2-r^2)',
 });
 
+g.k('g6-rolling-pi', 'Signature: Unrolling π', '招牌动画：滚出圆周率', {
+  d: 'A wheel one metre across rolls one turn and paints a line just over 3.14 m long; then Liu Hui’s polygons (割圆术) squeeze π from inside and outside.', t: ['Circumference', 'π', 'History of mathematics: Liu Hui and Zu Chongzhi'],
+  o: ['Explain why C = πd for every circle', 'Estimate π with inscribed and circumscribed polygons'], pre: ['g6-circumference'], rel: ['g6-cake', 'g6-circle-area'],
+  e: 'journey', c: {mode: 'pi'}, m: ['π is exactly 3.14', 'Bigger wheels have a bigger π'],
+  q: [N('A wheel 50 cm across rolls one turn. Distance in cm (π ≈ 3.14)?', 157, '3.14 × 50.'), N('A regular hexagon fits inside a circle. Its perimeter ÷ the circle’s diameter = ?', 3, 'Six sides each equal to r: 6r ÷ 2r.')],
+  x: ['Roll a can along a ruler and measure one turn. Divide by its diameter.'], f: 'C = \\pi d',
+});
 g.chapter('g6-solids', 'Cylinders and Cones', '圆柱与圆锥', 'geometry', 'Unfold cylinders and pour cones to discover surface and volume.');
 g.k('g6-cylinder-net', 'Unfolding a cylinder: surface area', '圆柱的表面积', {
   d: 'Unroll the curved surface: a rectangle whose length is the circumference and width is the height.', t: ['Cylinders', 'Circular bases', 'Curved surfaces', 'Cylinder height', 'Cylinder nets', 'Lateral surface area', 'Total surface area'],

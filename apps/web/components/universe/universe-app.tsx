@@ -15,6 +15,8 @@ import {KnowledgeMap, GRADE_COLORS, STAGES} from './knowledge-map';
 import {SoundContext, playTone} from './stage';
 
 const PREFS_KEY = 'nebula-universe-prefs-v1';
+/** Free-flowing journeys: continuous, imaginative sequences that drift and morph. */
+const JOURNEYS = ['g4-times-circle', 'g6-rolling-pi', 'g10-epicycles', 'g11-halving', 'g11-sunflower'];
 const SIGNATURE = ['g6-cake', 'g6-cone-pour', 'g5-parallelogram', 'g1-make-ten', 'g8-pythagorean', 'g9-complete-square', 'g10-sine-graph', 'g10-am-gm', 'g11-ellipse', 'g11-rate-of-change', 'g12-normal', 'g6-circle-area'];
 
 function usePrefs(): [PlayerPrefs, (p: PlayerPrefs) => void] {
@@ -87,6 +89,9 @@ function UniverseHome() {
     <div className="section-title lower-heading"><div><div className="eyebrow">SIGNATURE EXPERIENCES</div><h2>Moments of discovery</h2></div></div>
     <div className="u-signature">{SIGNATURE.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}>
       <span className="eyebrow">GRADE {p.grade}</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small>{!ready(p) && <em>Storyboard preview</em>}</Link>; })}</div>
+    <div className="section-title lower-heading"><div><div className="eyebrow">JOURNEYS · 数学之旅</div><h2>Let the mathematics flow</h2><p className="muted">Continuous, free-flowing animations: watch an idea grow, drift and transform — then take the controls and let it run.</p></div></div>
+    <div className="u-signature u-journeys">{JOURNEYS.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}>
+      <span className="eyebrow">GRADE {p.grade} · JOURNEY</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small></Link>; })}</div>
     <div className="section-title lower-heading"><div><div className="eyebrow">CROSS-GRADE KNOWLEDGE SYSTEM</div><h2>How the ideas connect</h2><p className="muted">Select any point to light up what it builds on and what it unlocks in later grades.</p></div><Link className="small-link" href="/universe/map">Full screen <ArrowRight size={13}/></Link></div>
     <section className="panel"><KnowledgeMap compact/></section>
     <p className="muted u-version">Curriculum {CURRICULUM_VERSION} · aligned to the Mainland China compulsory education mathematics curriculum (Grades 1–9; Grades 7–9 follow the 人教版 sequence) and the senior high school standard (人教A版 required and selective-required books). The free elective courses (选修 A–E) are not included. Animations run in your browser; only your progress is stored.</p>

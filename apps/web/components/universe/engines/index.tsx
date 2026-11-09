@@ -48,6 +48,7 @@ import {sequenceView} from './sequence';
 import {derivativeView} from './derivative';
 import {combinView} from './combin';
 import {distributionView} from './distribution';
+import {journeyView} from './journey';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -89,4 +90,5 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   derivative: derivativeView,
   combin: combinView,
   distribution: distributionView,
+  journey: journeyView,
 };

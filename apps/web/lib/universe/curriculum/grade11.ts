@@ -88,6 +88,20 @@ g.k('g11-induction', 'Mathematical induction', '数学归纳法', {
   x: ['Prove 1 + 3 + 5 + … + (2n − 1) = n².'],
 });
 
+g.k('g11-halving', 'Signature: Halving forever', '招牌动画：无穷的一半', {
+  d: 'Paint half a square, then half of what is left, forever, while the camera dives into the corner that never runs out: infinitely many pieces add up to exactly 1.', t: ['Sum of a geometric sequence', 'Infinite geometric series (enrichment)', 'Self-similarity'],
+  o: ['Use Sₙ = a₁(1 − qⁿ)/(1 − q) for halving', 'Explain why the sum approaches 1'], pre: ['g11-geometric-seq'], rel: ['g11-sunflower'],
+  e: 'journey', c: {mode: 'halving'}, m: ['Infinitely many positive numbers always add to infinity', 'The sum gets close to 1 but the answer is “just under 1”'],
+  q: [N('1/2 + 1/4 + 1/8 + 1/16 = ? (decimal)', 0.9375, '15/16.'), N('1/3 + 1/9 + 1/27 + … forever = ? (decimal)', 0.5, '(1/3) ÷ (1 − 1/3).')],
+  x: ['Zeno’s paradox: Achilles races a tortoise with a head start. Explain with a geometric series why he catches it.'], f: '\\sum_{k=1}^{\\infty} \\frac{1}{2^k} = 1',
+});
+g.k('g11-sunflower', 'Signature: The sunflower’s secret angle', '招牌动画：向日葵的黄金角', {
+  d: 'Turn every new seed by the same angle. Sweep that angle slowly: spirals swirl and tangle, then lock into perfect packing at the golden angle — showing 13 and 21 Fibonacci spirals.', t: ['Recursive sequences', 'Fibonacci sequence', 'Golden ratio (enrichment)'],
+  o: ['Generate a sequence from a recurrence', 'See that Fibonacci ratios approach φ'], pre: ['g11-geometric-seq', 'g10-radian'], rel: ['g11-halving'],
+  e: 'journey', c: {mode: 'sunflower'}, m: ['Any simple fraction of a turn packs seeds well', 'Every sequence needs a formula for aₙ'],
+  q: [N('Next term: 5, 8, 13, 21, ?', 34, '13 + 21.'), N('The golden angle to the nearest degree?', 138, '360°(1 − 1/φ) ≈ 137.5°.')],
+  x: ['Count the spirals on a pine cone or a sunflower photo, clockwise and anticlockwise.'], f: 'a_{n+2} = a_{n+1} + a_n,\\quad \\frac{a_{n+1}}{a_n} \\to \\varphi',
+});
 g.chapter('g11-derivatives', 'Derivatives and Their Applications', '一元函数的导数及其应用', 'functions', 'Instantaneous rates, tangents, monotonicity and optimisation.', S2);
 g.k('g11-rate-of-change', 'Rates of change and the derivative', '变化率与导数的概念', {
   d: 'Zoom the secant through two points closer and closer: its slope approaches the tangent slope, the derivative.', t: ['Average rate of change', 'Instantaneous rate of change', 'Concept of derivative', 'Geometric meaning: tangent slope'],

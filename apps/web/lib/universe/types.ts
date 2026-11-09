@@ -20,7 +20,9 @@ export type EngineType =
   | 'proportion' | 'coordinate' | 'factor' | 'sorting' | 'transform' | 'reasoning' | 'shapes'
   // secondary school engines
   | 'rational' | 'tiles' | 'pythag' | 'geo2' | 'func' | 'inequality' | 'analysis' | 'trig' | 'vector'
-  | 'complex' | 'space' | 'conic' | 'sequence' | 'derivative' | 'combin' | 'distribution' | 'regression' | 'sets';
+  | 'complex' | 'space' | 'conic' | 'sequence' | 'derivative' | 'combin' | 'distribution' | 'regression' | 'sets'
+  // free-flowing signature journeys
+  | 'journey';
 
 export type EngineConfig = Record<string, string | number | boolean | number[] | string[]>;
 

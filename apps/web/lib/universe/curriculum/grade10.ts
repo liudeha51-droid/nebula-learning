@@ -118,6 +118,13 @@ g.k('g10-identities', 'Trigonometric identities', '三角恒等变换', {
   x: ['Prove sin 2α = 2 sin α cos α with the sum formula.'], f: '\\cos(\\alpha-\\beta)=\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta',
 });
 
+g.k('g10-epicycles', 'Signature: Circles that draw waves', '招牌动画：画出波形的圆', {
+  d: 'A spinning circle draws a sine wave. Ride smaller, faster circles on its tip and the wave stiffens into a square wave: sums of sinusoids build almost any shape.', t: ['Graphs of sine functions', 'y = A sin(ωx + φ)', 'Sums of waves (enrichment)'],
+  o: ['Relate a rotating point to a sine graph', 'See how amplitude and frequency of added waves change a graph'], pre: ['g10-sine-graph', 'g10-sinusoid'], rel: ['g10-unit-circle'],
+  e: 'journey', c: {mode: 'epicycles'}, m: ['Smooth waves can never make corners', 'Adding waves just makes a bigger wave'],
+  q: [N('In the square-wave chain, how many times as fast as the first does the 4th circle spin?', 7, 'Odd speeds 1, 3, 5, 7.'), M('Adding more, smaller, faster circles makes the corners…', ['Sharper', 'Rounder'], 'Sharper', 'The sum approaches a square wave.')],
+  x: ['Use a graphing tool to plot sin x + sin 3x/3 + sin 5x/5. Add more terms.'], f: '\\frac{4}{\\pi}\\left(\\sin x + \\frac{\\sin 3x}{3} + \\frac{\\sin 5x}{5} + \\cdots\\right)',
+});
 g.chapter('g10-vectors', 'Plane Vectors and Applications', '平面向量及其应用', 'geometry', 'Quantities with direction; solving triangles.', B2);
 g.k('g10-vector-add', 'Vector addition, subtraction and scalar multiples', '向量的线性运算', {
   d: 'Vectors add head-to-tail (or by the parallelogram); scaling changes length and may reverse direction; coordinates add component-wise.', t: ['Concept of vectors', 'Addition and subtraction', 'Scalar multiplication', 'Basis and coordinates'],
