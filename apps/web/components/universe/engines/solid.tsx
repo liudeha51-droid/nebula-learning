@@ -6,18 +6,18 @@ import {clamp, eseg, fix, fmt, lerp, seg} from '@/lib/universe/math';
 import {range} from '@/lib/universe/engines/util';
 import type {EngineView} from './types';
 
-type Face = {pts: V3[]; fill: string; stroke?: string; opacity?: number; label?: string};
-interface Cam {yaw: number; pitch: number; s: number; cx: number; cy: number}
-const project = (cam: Cam, [x, y, z]: V3) => { const a = cam.yaw * Math.PI / 180, b = cam.pitch * Math.PI / 180; const x1 = x * Math.cos(a) - y * Math.sin(a), y1 = x * Math.sin(a) + y * Math.cos(a);
+export type Face = {pts: V3[]; fill: string; stroke?: string; opacity?: number; label?: string};
+export interface Cam {yaw: number; pitch: number; s: number; cx: number; cy: number}
+export const project = (cam: Cam, [x, y, z]: V3) => { const a = cam.yaw * Math.PI / 180, b = cam.pitch * Math.PI / 180; const x1 = x * Math.cos(a) - y * Math.sin(a), y1 = x * Math.sin(a) + y * Math.cos(a);
   return {X: cam.cx + cam.s * x1, Y: cam.cy - cam.s * (z * Math.cos(b) + y1 * Math.sin(b)), depth: y1 * Math.cos(b) - z * Math.sin(b)}; };
-const shade = (hex: string, k: number) => { const n = parseInt(hex.slice(1), 16); const f = (v: number) => Math.round(clamp(v * k, 0, 255)); return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`; };
+export const shade = (hex: string, k: number) => { const n = parseInt(hex.slice(1), 16); const f = (v: number) => Math.round(clamp(v * k, 0, 255)); return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`; };
 /** Painter's algorithm renderer for convex faces. */
-function Mesh({faces, cam}: {faces: Face[]; cam: Cam}) {
+export function Mesh({faces, cam}: {faces: Face[]; cam: Cam}) {
   const proj = faces.map(f => { const ps = f.pts.map(p => project(cam, p)); return {...f, ps, depth: ps.reduce((s, p) => s + p.depth, 0) / ps.length}; }).sort((a, b) => b.depth - a.depth);
   return <g>{proj.map((f, i) => <g key={i}><polygon points={f.ps.map(p => `${p.X},${p.Y}`).join(' ')} fill={f.fill} fillOpacity={f.opacity ?? 1} stroke={f.stroke ?? '#15141d'} strokeWidth={1.2} strokeLinejoin="round"/>
     {f.label && <T x={f.ps.reduce((s, p) => s + p.X, 0) / f.ps.length} y={f.ps.reduce((s, p) => s + p.Y, 0) / f.ps.length} size={12} color="#15141d" weight={700}>{f.label}</T>}</g>)}</g>;
 }
-const boxFaces = (x0: number, y0: number, z0: number, l: number, w: number, h: number, color: string, opacity = 1): Face[] => {
+export const boxFaces = (x0: number, y0: number, z0: number, l: number, w: number, h: number, color: string, opacity = 1): Face[] => {
   const v = (x: number, y: number, z: number): V3 => [x0 + x * l, y0 + y * w, z0 + z * h];
   return [
     {pts: [v(0, 0, 1), v(1, 0, 1), v(1, 1, 1), v(0, 1, 1)], fill: shade(color, 1.1), opacity}, {pts: [v(0, 0, 0), v(1, 0, 0), v(1, 1, 0), v(0, 1, 0)], fill: shade(color, .5), opacity},
@@ -33,7 +33,7 @@ const translate = (faces: Face[], d: V3): Face[] => faces.map(f => ({...f, pts: 
 function Sphere({cx, cy, r}: {cx: number; cy: number; r: number}) { return <g><defs><radialGradient id="u-sph" cx=".35" cy=".3"><stop offset="0" stopColor="#ffe9f6"/><stop offset="1" stopColor={C.unknown}/></radialGradient></defs><circle cx={cx} cy={cy} r={r} fill="url(#u-sph)"/></g>; }
 
 /** Drag anywhere on the stage to rotate. */
-function Rotator({cam, setCam, children}: {cam: Cam; setCam: (c: Cam) => void; children: ReactNode}) {
+export function Rotator({cam, setCam, children}: {cam: Cam; setCam: (c: Cam) => void; children: ReactNode}) {
   const drag = useRef<[number, number] | null>(null);
   return <g onPointerDown={e => { drag.current = [e.clientX, e.clientY]; (e.currentTarget as Element).setPointerCapture(e.pointerId); }} onPointerUp={() => { drag.current = null; }}
     onPointerMove={e => { if (!drag.current) return; const dx = e.clientX - drag.current[0], dy = e.clientY - drag.current[1]; drag.current = [e.clientX, e.clientY]; setCam({...cam, yaw: cam.yaw + dx * .6, pitch: clamp(cam.pitch + dy * .4, 5, 85)}); }}

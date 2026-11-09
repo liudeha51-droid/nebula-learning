@@ -34,6 +34,16 @@ import {funcView} from './func';
 import {rationalView} from './rational';
 import {tilesView} from './tiles';
 import {pythagView} from './pythag';
+import {geo2View} from './geo2';
+import {inequalityView} from './inequality';
+import {setsView} from './sets';
+import {analysisView} from './analysis';
+import {regressionView} from './regression';
+import {trigView} from './trig';
+import {vectorView} from './vector';
+import {complexView} from './complex';
+import {spaceView} from './space';
+import {conicView} from './conic';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   counting: countingView, objects: objectsView, 'place-value': placeValueView, column: columnView, array: arrayView, division: divisionView, laws: lawsView, fraction: fractionView,
@@ -61,4 +71,14 @@ export const VIEWS: Partial<Record<EngineType, EngineView<any>>> = {
   rational: rationalView,
   tiles: tilesView,
   pythag: pythagView,
+  geo2: geo2View,
+  inequality: inequalityView,
+  sets: setsView,
+  analysis: analysisView,
+  regression: regressionView,
+  trig: trigView,
+  vector: vectorView,
+  complex: complexView,
+  space: spaceView,
+  conic: conicView,
 };

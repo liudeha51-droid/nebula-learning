@@ -32,6 +32,16 @@ import {func} from './func';
 import {rational} from './rational';
 import {tiles} from './tiles';
 import {pythag} from './pythag';
+import {geo2} from './geo2';
+import {inequality} from './inequality';
+import {sets} from './sets';
+import {analysis} from './analysis';
+import {regression} from './regression';
+import {trig} from './trig';
+import {vector} from './vector';
+import {complex} from './complex';
+import {space} from './space';
+import {conic} from './conic';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -60,4 +70,14 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   rational: rational,
   tiles: tiles,
   pythag: pythag,
+  geo2: geo2,
+  inequality: inequality,
+  sets: sets,
+  analysis: analysis,
+  regression: regression,
+  trig: trig,
+  vector: vector,
+  complex: complex,
+  space: space,
+  conic: conic,
 };
