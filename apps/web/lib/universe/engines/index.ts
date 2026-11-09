@@ -1,0 +1,93 @@
+import type {EngineLogic, EngineType} from '../types';
+import {counting} from './counting';
+import {objects} from './objects';
+import {placeValue} from './place-value';
+import {column} from './column';
+import {array} from './array';
+import {division} from './division';
+import {laws} from './laws';
+import {fraction} from './fraction';
+
+import {decimal} from './decimal';
+import {numberLine} from './number-line';
+import {angle} from './angle';
+import {area} from './area';
+import {circle} from './circle';
+import {solid} from './solid';
+import {balance} from './balance';
+import {percent} from './percent';
+import {data} from './data';
+import {probability} from './probability';
+import {proportion} from './proportion';
+import {measure} from './measure';
+import {clock} from './clock';
+import {money} from './money';
+import {coordinate} from './coordinate';
+import {transform} from './transform';
+import {factor} from './factor';
+import {sorting} from './sorting';
+import {shapes} from './shapes';
+import {reasoning} from './reasoning';
+import {func} from './func';
+import {rational} from './rational';
+import {tiles} from './tiles';
+import {pythag} from './pythag';
+import {geo2} from './geo2';
+import {inequality} from './inequality';
+import {sets} from './sets';
+import {analysis} from './analysis';
+import {regression} from './regression';
+import {trig} from './trig';
+import {vector} from './vector';
+import {complex} from './complex';
+import {space} from './space';
+import {conic} from './conic';
+import {sequence} from './sequence';
+import {derivative} from './derivative';
+import {combin} from './combin';
+import {distribution} from './distribution';
+import {journey} from './journey';
+/** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
+  counting, objects, 'place-value': placeValue, column, array, division, laws, fraction,
+  decimal: decimal,
+  'number-line': numberLine,
+  angle: angle,
+  area: area,
+  circle: circle,
+  solid: solid,
+  balance: balance,
+  percent: percent,
+  data: data,
+  probability: probability,
+  proportion: proportion,
+  measure: measure,
+  clock: clock,
+  money: money,
+  coordinate: coordinate,
+  transform: transform,
+  factor: factor,
+  sorting: sorting,
+  shapes: shapes,
+  reasoning: reasoning,
+  func: func,
+  rational: rational,
+  tiles: tiles,
+  pythag: pythag,
+  geo2: geo2,
+  inequality: inequality,
+  sets: sets,
+  analysis: analysis,
+  regression: regression,
+  trig: trig,
+  vector: vector,
+  complex: complex,
+  space: space,
+  conic: conic,
+  sequence: sequence,
+  derivative: derivative,
+  combin: combin,
+  distribution: distribution,
+  journey: journey,
+};

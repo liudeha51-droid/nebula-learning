@@ -26,3 +26,7 @@ This is a useful integrated local MVP, not fulfilment of every checkbox in the 2
 - Question revision currently preserves content with a small stem suffix. A full revision editor/import membership UI is not implemented.
 - Failed review attempts that return an exception before commit do not yet persist a separate failure audit record.
 - No public deployment or production availability SLA is claimed.
+
+## Mathematics Universe
+
+See [universe.md](universe.md#known-limitations-and-remaining-work). In short: the curriculum content has not been reviewed by teachers, narration is English only, the visuals are clear but not cinematic, Explore depth varies by mode, there has been no screen-reader or cross-browser acceptance, and migration 0002 was verified on SQLite only.

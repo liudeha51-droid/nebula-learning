@@ -19,6 +19,8 @@ Interactive OpenAPI: `/api/docs`; machine schema: `/api/openapi.json`. All route
 | POST `/calculate` | student | expression/degrees/precision/session_id; safe grammar |
 | GET `/analytics` | student | subject/node/tier/start/end filters; pending feedback excluded |
 | GET `/reviews` | student | Disclosed-evidence review schedules |
+| GET `/universe/progress` | student | Own Mathematics Universe level masks `{items:[{kp_id,levels,updated}]}` |
+| PUT `/universe/progress/{kp_id}` | student | `{level:1..6}` ORs one learning level into the mask; idempotent; kp_id validated, 500-row cap |
 | GET `/admin/overview` | admin | Active bank, counts, provider status, jobs and audit |
 | GET `/admin/questions?offset=0&limit=30` | admin | Version content and review evidence; max 100/page |
 | POST `/admin/questions/{vid}/revision` | admin | Preserved draft revision of a fixture |
