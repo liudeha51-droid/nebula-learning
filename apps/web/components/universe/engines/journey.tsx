@@ -1,24 +1,12 @@
 'use client';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
+import {useClock} from '../use-clock';
 import {Stage, T, C, W, Readout, Slider, Segmented, Action, Stepper} from '../stage';
 import {journey, PHI, GOLDEN_DEG, fib, inscribed, circumscribed, type JourneyConfig} from '@/lib/universe/engines/journey';
 import {clamp, ease, eseg, fmt, lerp, seg} from '@/lib/universe/math';
 import {range} from '@/lib/universe/engines/util';
 import type {EngineView} from './types';
 
-/* ---------- a free-running clock for Explore (paused when the OS asks for reduced motion) ---------- */
-function useClock() {
-  const [playing, setPlaying] = useState(() => typeof window === 'undefined' || !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
-  const [t, setT] = useState(0);
-  useEffect(() => {
-    if (!playing) return;
-    let raf = 0, last = performance.now();
-    const tick = (now: number) => { const dt = Math.min(.05, (now - last) / 1000); last = now; setT(v => v + dt); raf = requestAnimationFrame(tick); };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [playing]);
-  return {t, setT, playing, toggle: () => setPlaying(v => !v)};
-}
 /** Scene time that keeps flowing across scene boundaries (6 units per scene). */
 const flow = (scene: number, p: number) => (scene + p) * 6;
 const hue = (h: number, l = 68, a = 1) => `hsla(${((h % 360) + 360) % 360}, 85%, ${l}%, ${a})`;

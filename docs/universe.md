@@ -18,6 +18,7 @@ The senior “elective” content included is the **selective-required (选择�
 | Route | What it shows |
 | --- | --- |
 | `/universe` | Twelve grade worlds grouped by school stage, signature experiences, journeys, and a compact knowledge map |
+| `/universe/frontier` | The frontier: problems OpenAI models have taken on, ordered by difficulty from the seven Millennium Prize Problems to IMO 2025, with status, sources and explorers |
 | `/universe/map` | Full cross-grade knowledge connection graph, with search, a school-stage filter, a domain filter and an accessible list |
 | `/universe/grade/{1-12}` | One grade world: chapters (secondary chapters are labelled with their textbook volume), knowledge-point cards and a domain filter |
 | `/universe/k/{id}` | A knowledge point with six learning levels |
@@ -102,6 +103,60 @@ The shared components map to the blueprint's proposed names as follows:
 Shared primitives live in `components/universe/stage.tsx`: the SVG stage, quantity colours, keyboard-accessible drag handles, steppers, sliders and sound.
 
 **Quantity colours are the same in every grade:** ones = amber, tens = mint, hundreds = violet, thousands = coral, unknowns = pink.
+
+## The frontier (`/universe/frontier`)
+
+A page of mathematics problems that OpenAI models have tackled, written for high-school students and ordered by difficulty:
+
+1. **The seven Millennium Prize Problems.** Each gets a plain-language statement and an honest status.
+   - Poincaré was solved by Perelman.
+   - Navier–Stokes is a **disputed, unverified** OpenAI claim from September 2026.
+   - For the other five, the page lists OpenAI's claimed partial or related results (e.g. a zero-free region for ζ, the Hodge conjecture for CM abelian varieties, special cases of BSD, a 2-D toy model with a mass gap, ETH and Subset Sum results near P vs NP). It says plainly that none of these solves the problem.
+2. **Famous conjectures:** colouring the plane, the irrationality exponent of π, Erdős's arithmetic-progression conjecture, short Egyptian fractions, crossing numbers, multiplication below n log n.
+3. **Research puzzles with one-sentence statements:** Snaky, largest prime factors of n and n + 1, Heilbronn's triangle problem, three-machine scheduling.
+4. **IMO 2025 Problems 3, 5, 1 and 4** (hardest first), which OpenAI's experimental model solved in July 2025. The IMO did not officially certify the result.
+
+**Content and sources.** `lib/universe/frontier.ts` holds the content. Each entry has a status label:
+- open
+- solved by humans
+- disputed claim
+- claim with a Lean formalisation listed
+- claim without one
+- competition result
+
+Every entry cites sources. Repository facts come from `github.com/openai/math` at commit `4eaee87` (29 October 2026); news facts are as of October 2026.
+
+**Explorers.** Fourteen explorers live in `components/universe/frontier-explorers.tsx`:
+- blowup of y′ = y²
+- prime counting with Li(x)
+- subset sum
+- rational points on y² = x³ − 2 by chord-and-tangent, with point counts mod p
+- loops on a sphere and a torus
+- colouring the Moser spindle
+- best fractions for π
+- Egyptian fractions
+- largest prime factors
+- a two-player Snaky board (the shape taken from the paper's definition)
+- the four IMO problems
+
+Their exact maths (BigInt rationals, 50-digit π, sieves) is in `lib/universe/frontier-math.ts`.
+
+**Verification.**
+- `frontier-math.test.ts` re-checks the IMO answers by computation:
+  - sunny-line constructions for n = 3–8
+  - the divisor-sequence formula for every start below 6000
+  - the bonza example satisfies the condition for every a, b ≤ 60
+  - the game outcome on both sides of 1/√2
+- It also checks that the Moser spindle has no proper 3-colouring.
+- Separately, an exhaustive search for n = 3, 4, 5 confirmed that k = 2 sunny lines is impossible.
+- `frontier.test.ts` checks:
+  - that the page opens with exactly the seven Millennium problems, with the statuses above
+  - that every knowledge-point link resolves
+  - that every "Lean formalisation listed" entry cites its Lean notes
+
+**Limitations.**
+- The OpenAI claims are summarised from the repository's own descriptions and from news coverage. This app does not verify them.
+- The session that built this page could not reach the official IMO site, OpenAI's announcement pages or erdosproblems.com; IMO statements are paraphrased and their answers were re-derived by computation.
 
 ## Learning levels
 
