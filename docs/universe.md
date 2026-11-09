@@ -113,24 +113,32 @@ Each knowledge point has six levels: Observe, Explore, Discover, Understand, App
 
 | Check | Result |
 | --- | --- |
-| Backend `pytest` | 152 passed (4 new universe tests) |
-| Alembic `upgrade head` → `check` → `downgrade base` → `upgrade head` (disposable SQLite) | clean, no drift |
+| Backend `pytest` | 153 passed (5 universe tests, including grade 7–12 ids accepted and grade 0/13 rejected) |
+| Alembic `upgrade head` → `check` → `downgrade base` → `upgrade head` (disposable SQLite) | clean, no drift (verified with the primary release; the secondary work changes no schema) |
 | `npm run lint`, `npm run typecheck` | clean |
-| `vitest` | 17 passed |
+| `vitest` | 18 passed (the per-point tests run over all 308 points) |
 | `next build` | succeeds |
 
 The vitest suite covers:
 - curriculum integrity: unique IDs, resolvable acyclic edges, answer consistency
 - per knowledge point: storyboard structure, prediction-before-explanation, 25 seeded challenges, config validation
-- maths helpers: order of operations, Chinese number reading, column and long-division algorithms, answer parsing
+- maths helpers: order of operations, Chinese number reading, column and long-division algorithms, answer parsing, and rounding of values in exponential notation
+- secondary curriculum shape: every grade 7–12 world has at least 3 chapters and 10 points, and every secondary chapter names its textbook volume
 
 Browser checks used headless Chromium against the running app, logged in as a development learner:
-- **All 196 knowledge points at 1280 px and at 390 px**: every scene chip, Explore with button interactions, and Apply. No page errors and no horizontal page overflow.
-- End-to-end flow: prediction gate → reveal → resume, comprehension answer, server persistence (level mask), progress surviving a reload, solving on the algebra balance, knowledge-map selection, and the existing routes (`/`, `/practice`, `/nebula`, `/notes`, `/analytics`).
+- **All 308 knowledge points at 1280 px and at 390 px**: every scene chip, Explore with button interactions, and Apply. No page errors and no horizontal page overflow.
+- Contact sheets of the discover scene and the Explore mode of every secondary engine were inspected by eye. This found and fixed: a NaN in scenes opened at their first frame (a `fix()` rounding bug for values like `3.7e-12`), an incorrect expected value in the prize-wheel scene, and several overlapping labels.
+- End-to-end flow: prediction gate → reveal → resume, comprehension answer, server persistence (level mask), progress surviving a reload, solving on the algebra balance, knowledge-map selection, and the existing routes (`/`, `/practice`, `/nebula`, `/notes`, `/analytics`). For the secondary stages: the Grade 12 page and its textbook label, a senior point (`g10-am-gm`) answered in Apply and manipulated in Explore with the level persisted by the API, and the map's Senior secondary filter.
 
 ## Known limitations and remaining work
 
 - **Content review.** The curriculum text, misconceptions and questions were written for this implementation and are consistency-tested, but they have **not** been reviewed by teachers. Some topics differ between textbook editions (for example inverse proportion and the trapezoid definition); these are labelled as enrichment or textbook-dependent.
+- **Secondary scope.**
+  - The free elective courses (选修 A–E) are not included.
+  - Junior chapters follow the PEP sequence as a whole. The older and the 2024-revised PEP editions place a few chapters in different volumes, so a chapter’s `book` label may not match every school’s copy.
+  - Grades 10–12 are a teaching order for the 人教A版 books, not an official grade assignment.
+  - The secondary stages are coarser than primary: 112 points for nine junior volumes and five senior books.
+  - Some textbook sections appear only in narration, questions or a neighbouring point, without an animation of their own. Examples: oblique (斜二测) drawing, recursive sequences beyond arithmetic/geometric, composite-function derivatives, the hypergeometric distribution, Bayes’ formula, and the mathematical-modelling activities.
 - **Language.** Titles are bilingual (English/中文). Narration, captions and explanations are English only.
 - **Production polish.** The visuals are clear SVG animations, not a cinematic production. Camera movement is minimal, there is no ambient music (only short synthesised effects), and 3D uses a lightweight custom SVG projection rather than Three.js.
 - **Explore depth varies.** Some modes (for example mass units, codes and logic grids) explore by changing parameters rather than by direct manipulation.
