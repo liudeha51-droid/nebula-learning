@@ -168,3 +168,22 @@
 .app-shell[data-theme=playful] .s-competition{color:#8a5a00;border-color:#f3cf6b;background:#fffaea}
 @media (prefers-reduced-motion:reduce){.app-shell[data-theme=playful] .u-world:hover{transform:none}}
 .app-shell[data-theme=playful] .u-speed,.app-shell[data-theme=playful] .u-speed label{color:#4f4b6e}
+/* learning journeys */
+.app-shell[data-theme=playful] .u-lj-card{background:#fff;border:2px solid color-mix(in srgb,var(--lj) 45%,#fff);border-top:7px solid var(--lj);border-radius:22px;box-shadow:0 5px 0 color-mix(in srgb,var(--lj) 35%,#fff)}
+.app-shell[data-theme=playful] .u-lj-card .eyebrow{color:#4b3aa8}
+.app-shell[data-theme=playful] .u-lj-seed,.app-shell[data-theme=playful] .u-lj-dest{color:#3d3a63}
+.app-shell[data-theme=playful] .u-lj-seed svg,.app-shell[data-theme=playful] .u-lj-dest svg,.app-shell[data-theme=playful] .u-lj-ends svg,.app-shell[data-theme=playful] .u-lj-banner>svg{color:color-mix(in srgb,var(--lj) 55%,#1f1c45)}
+.app-shell[data-theme=playful] .u-lj-dots em{color:#4b4870}
+.app-shell[data-theme=playful] .u-lj-hero{background:linear-gradient(135deg,color-mix(in srgb,var(--lj) 26%,#fff),#fff 70%);border:2px solid color-mix(in srgb,var(--lj) 45%,#fff);border-radius:28px;box-shadow:0 7px 0 color-mix(in srgb,var(--lj) 35%,#fff)}
+.app-shell[data-theme=playful] .u-lj-map{color:#262448}
+.app-shell[data-theme=playful] .u-lj-stop{background:#fff;border:2px solid color-mix(in srgb,var(--g) 40%,#f3e3c9);border-left:7px solid var(--g);border-radius:20px;box-shadow:0 4px 0 color-mix(in srgb,var(--g) 25%,#f3e3c9)}
+.app-shell[data-theme=playful] .u-lj-stop .eyebrow{color:var(--gd)}
+.app-shell[data-theme=playful] .u-lj-num{background:color-mix(in srgb,var(--g) 25%,#fff);border-color:var(--g);color:#262448}
+.app-shell[data-theme=playful] .u-lj-stop.done .u-lj-num{background:var(--g);color:#1d1b3a}
+.app-shell[data-theme=playful] .u-lj-rule{background:#fff6dd;color:#262448;border:1px solid #f1dfc4}
+.app-shell[data-theme=playful] .u-lj-builds{color:#4b4870}
+.app-shell[data-theme=playful] .u-lj-kit{background:#fff;border:2px solid #f3e3c9;border-radius:22px;box-shadow:0 5px 0 #f3e3c9}
+.app-shell[data-theme=playful] .u-lj-kit small{color:#4b4870}
+.app-shell[data-theme=playful] .u-lj-capstone{background:#fff;border:3px solid var(--lj);border-radius:26px;box-shadow:0 7px 0 color-mix(in srgb,var(--lj) 40%,#fff)}
+.app-shell[data-theme=playful] .u-lj-tool{color:#262448;background:color-mix(in srgb,var(--lj) 20%,#fff);border-color:color-mix(in srgb,var(--lj) 70%,#1f1c45)}
+.app-shell[data-theme=playful] .u-lj-banner{background:color-mix(in srgb,var(--lj) 14%,#fff);border:2px solid color-mix(in srgb,var(--lj) 55%,#fff);color:#262448;border-radius:16px}

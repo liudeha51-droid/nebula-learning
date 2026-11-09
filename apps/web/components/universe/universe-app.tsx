@@ -13,6 +13,7 @@ import {ChallengePanel} from './player/challenge-panel';
 import {Tex} from './player/tex';
 import {KnowledgeMap, STAGES, gradeStyle} from './knowledge-map';
 import {FrontierPage} from './frontier';
+import {JourneysIndex, JourneyPage, JourneyBanner, JourneyCards} from './learning-journeys';
 import {SoundContext, playTone} from './stage';
 
 const PREFS_KEY = 'nebula-universe-prefs-v1';
@@ -41,6 +42,8 @@ export default function UniverseApp({path, profileReducedMotion}: {path: string;
   if (parts.length === 1) page = <UniverseHome/>;
   else if (parts[1] === 'map') page = <MapPage/>;
   else if (parts[1] === 'frontier') page = <FrontierPage/>;
+  else if (parts[1] === 'journeys' && !parts[2]) page = <JourneysIndex/>;
+  else if (parts[1] === 'journeys' && parts[2]) page = <JourneyPage key={parts[2]} id={parts[2]}/>;
   else if (parts[1] === 'grade' && /^([1-9]|1[0-2])$/.test(parts[2] ?? '')) page = <GradePage grade={Number(parts[2]) as Grade}/>;
   else if (parts[1] === 'k' && parts[2] && getPoint(parts[2])) page = <PointPage key={parts[2]} point={getPoint(parts[2])!} reduced={reduced}/>;
   else page = <div className="empty"><Compass size={28}/><h3>Uncharted region</h3><p>This part of the universe does not exist yet.</p><Link className="button" href="/universe">Back to the universe</Link></div>;
@@ -68,13 +71,15 @@ function UniverseHome() {
         <h1>Mathematics is something<br/>you can <span className="accent">explore</span>.</h1>
         <p lang="zh-CN" className="zh-lead">数学，是可以探索的世界。</p>
         <p>Twelve worlds, from counting to calculus. Watch quantities form, move the objects yourself, predict before you are told, and discover why the equations are true.</p>
-        <div className="button-row"><Link className="button primary" href="/universe/grade/1">Start in Grade 1 <ArrowRight size={16}/></Link><Link className="button" href="/universe/map"><MapIcon size={16}/>Open the knowledge map</Link><Link className="button" href="/universe/frontier"><Sparkles size={16}/>The frontier</Link><Sync/></div>
+        <div className="button-row"><Link className="button primary" href="/universe/grade/1">Start in Grade 1 <ArrowRight size={16}/></Link><Link className="button" href="/universe/map"><MapIcon size={16}/>Open the knowledge map</Link><Link className="button" href="/universe/journeys"><Compass size={16}/>Learning journeys</Link><Link className="button" href="/universe/frontier"><Sparkles size={16}/>The frontier</Link><Sync/></div>
       </div>
       <dl className="u-stats">
         <div><dt>Grade worlds</dt><dd>{WORLDS.length}</dd></div><div><dt>Chapters</dt><dd>{CHAPTERS.length}</dd></div>
         <div><dt>Knowledge points</dt><dd>{POINTS.length}</dd></div><div><dt>Animation engines live</dt><dd>{built}/{engines.size}</dd></div>
       </dl>
     </section>
+    <div className="section-title lower-heading"><div><div className="eyebrow">LEARNING JOURNEYS · 学习之旅</div><h2>From one idea to the big picture</h2><p className="muted">Start with one simple idea, collect a new tool at every stop, then use them all together on a real problem.</p></div><Link className="small-link" href="/universe/journeys">All journeys <ArrowRight size={13}/></Link></div>
+    <JourneyCards/>
     {STAGES.map(([stage, label, zh, grades]) => <section key={stage} aria-labelledby={`u-stage-${stage}`}>
       <div className="section-title lower-heading"><div><div className="eyebrow">{label.toUpperCase()} · {zh} · GRADES {grades[0]}–{grades[grades.length - 1]}</div><h2 id={`u-stage-${stage}`}>{stage === 'primary' ? 'Primary worlds' : stage === 'junior' ? 'Junior secondary worlds' : 'Senior secondary worlds'}</h2>{stage !== 'primary' && <p className="muted">{stage === 'junior' ? 'People’s Education Press (人教版) Grades 7–9 sequence.' : 'People’s Education Press A edition (人教A版 2019): required books 1–2 and selective-required books 1–3.'}</p>}</div></div>
       <div className="u-worlds">{WORLDS.filter(w => w.stage === stage).map(w => {
@@ -91,9 +96,9 @@ function UniverseHome() {
     <div className="section-title lower-heading"><div><div className="eyebrow">SIGNATURE EXPERIENCES</div><h2>Moments of discovery</h2></div></div>
     <div className="u-signature">{SIGNATURE.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={gradeStyle(p.grade)}>
       <span className="eyebrow">GRADE {p.grade}</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small>{!ready(p) && <em>Storyboard preview</em>}</Link>; })}</div>
-    <div className="section-title lower-heading"><div><div className="eyebrow">JOURNEYS · 数学之旅</div><h2>Let the mathematics flow</h2><p className="muted">Continuous, free-flowing animations: watch an idea grow, drift and transform — then take the controls and let it run.</p></div></div>
+    <div className="section-title lower-heading"><div><div className="eyebrow">FLOWING ANIMATIONS · 流动的数学</div><h2>Let the mathematics flow</h2><p className="muted">Continuous, free-flowing animations: watch an idea grow, drift and transform — then take the controls and let it run.</p></div></div>
     <div className="u-signature u-journeys">{JOURNEYS.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={gradeStyle(p.grade)}>
-      <span className="eyebrow">GRADE {p.grade} · JOURNEY</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small></Link>; })}</div>
+      <span className="eyebrow">GRADE {p.grade} · ANIMATION</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small></Link>; })}</div>
     <Link href="/universe/frontier" className="u-frontier-teaser"><span className="eyebrow">THE FRONTIER · 数学前沿</span><strong>Problems AI has taken on, from the Millennium Prize Problems to the olympiad</strong><span>The seven $1 million problems, famous conjectures and IMO 2025 problems — what they ask, what OpenAI claimed, how far it has been checked, and explorers to try. <ArrowRight size={14}/></span></Link>
     <div className="section-title lower-heading"><div><div className="eyebrow">CROSS-GRADE KNOWLEDGE SYSTEM</div><h2>How the ideas connect</h2><p className="muted">Select any point to light up what it builds on and what it unlocks in later grades.</p></div><Link className="small-link" href="/universe/map">Full screen <ArrowRight size={13}/></Link></div>
     <section className="panel"><KnowledgeMap compact/></section>
@@ -164,6 +169,7 @@ function PointPage({point, reduced}: {point: KnowledgePoint; reduced: boolean}) 
         <h1>{point.title}</h1><p lang="zh-CN" className="zh-lead">{point.title_zh}</p></div>
       <div className="u-point-meta"><Sync/><LevelDots mask={progress[point.id]}/></div>
     </header>
+    <JourneyBanner pointId={point.id}/>
     <div className="u-objective"><BookOpenCheck size={17}/><div><strong>Learning objective</strong><ul>{point.learning_objectives.map(o => <li key={o}>{o}</li>)}</ul></div></div>
 
     <nav className="u-levels" role="tablist" aria-label="Learning levels (any order)">{LEVELS.map(l =>

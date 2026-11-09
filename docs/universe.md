@@ -18,6 +18,8 @@ The senior “elective” content included is the **selective-required (选择�
 | Route | What it shows |
 | --- | --- |
 | `/universe` | Twelve grade worlds grouped by school stage, signature experiences, journeys, and a compact knowledge map |
+| `/universe/journeys` | Learning journeys: guided routes from one simple idea, through lessons across grades, to a capstone that uses every tool |
+| `/universe/journeys/{id}` | One learning journey: big-picture map, stops, toolkit and capstone |
 | `/universe/frontier` | The frontier: problems OpenAI models have taken on, ordered by difficulty from the seven Millennium Prize Problems to IMO 2025, with status, sources and explorers |
 | `/universe/map` | Full cross-grade knowledge connection graph, with search, a school-stage filter, a domain filter and an accessible list |
 | `/universe/grade/{1-12}` | One grade world: chapters (secondary chapters are labelled with their textbook volume), knowledge-point cards and a domain filter |
@@ -112,6 +114,51 @@ The shared components map to the blueprint's proposed names as follows:
 Shared primitives live in `components/universe/stage.tsx`: the SVG stage, quantity colours, keyboard-accessible drag handles, steppers, sliders and sound.
 
 **Quantity colours are the same in every grade:** ones = amber, tens = mint, hundreds = violet, thousands = coral, unknowns = pink.
+
+## Learning journeys (`/universe/journeys`)
+
+Each learning journey starts from **one simple idea** from primary school. It then visits a series of existing lessons, usually across several grades, and each lesson hands the learner **one new tool**. It ends in a **capstone** problem that needs all the tools at once.
+
+| Journey | Seed idea | Stops (grades) | Capstone |
+| --- | --- | --- | --- |
+| Measure the Earth 测量地球 | An angle is an amount of turn | angles (3) → degrees (4) → circumference (6) → proportion (6) → parallel lines (7) → arc length (9) | Eratosthenes: from a 7.2° shadow and 800 km to the Earth’s circumference and radius |
+| Is this game fair? 这个游戏公平吗 | A whole can be shared into equal parts | fractions (3) → chance (6) → experiments (6) → listing outcomes (9) → classical probability (10) → expected value (12) | Run a dice stall: probability, expected value, the fair prize, and 1,000 simulated games |
+| The biggest garden 最大的菜园 | Perimeter is the distance around a shape | perimeter (3) → equations (5) → expressions (7) → functions (8) → parabolas (9) → rate of change (11) → optimisation (11) | 40 m of fence against a wall, solved by table, vertex and derivative, all agreeing |
+| How fast do things grow? 增长有多快 | Multiplication is repeated equal groups | multiplication (2) → percentage change (6) → powers (7) → exponential functions (10) → logarithms (10) → geometric series (11) | Doubling time with logarithms (and the rule of 72); yearly deposits summed as a geometric series |
+| Where am I? How GPS works 我在哪里 | A position is a pair of numbers | ordered pairs (5) → coordinate plane (7) → systems of equations (7) → Pythagoras (8) → distance formula (11) → circle equations (11) | Trilateration: three tower distances → three circles → two straight lines → solve for the phone |
+
+How it fits together:
+
+- **Journey page:**
+  - the question, the seed idea and the destination
+  - a big-picture road map (stops coloured by grade, ticked off as they are collected)
+  - stop cards: the tool, its rule, why it matters and what it builds on, with a link to the lesson
+  - a toolkit panel
+  - the capstone
+- **Collecting tools.** A stop counts as collected when any learning level of its lesson is done, so it uses the existing progress API.
+- **Capstone steps.** Every worked step names the tools it uses and links back to their stops.
+- **Lesson pages** show a banner with the stop number and the previous and next stops.
+- **Where the code lives:**
+  - content and capstone maths: `lib/universe/learning-journeys.ts`
+  - views: `components/universe/learning-journeys.tsx` and `capstones.tsx`
+- **Tests** (`learning-journeys.test.ts`) check:
+  - that every stop is a real lesson
+  - that grades never go down along a journey
+  - that no stop depends on a later stop in the prerequisite graph
+  - each capstone's maths:
+    - Eratosthenes gives 40,000 km
+    - sum 7 paying ¥6 on a ¥1 stake is exactly fair
+    - table, vertex and derivative agree
+    - logarithmic doubling time matches compounding
+    - the series matches year-by-year saving
+    - trilateration recovers the phone exactly
+- **Browser checks:**
+  - every journey page at 1280 and 390 px, with no errors and no overflow
+  - each capstone's controls exercised
+  - progress shown to update the toolkit after a lesson level is completed
+  - a WCAG AA contrast audit of the journey pages, index and banner in the bright theme
+
+The home page's animation row is now called **Flowing animations**, so that “learning journeys” always means these guided routes.
 
 ## The frontier (`/universe/frontier`)
 
@@ -212,7 +259,7 @@ Each knowledge point has six levels: Observe, Explore, Discover, Understand, App
 | Backend `pytest` | 153 passed (5 universe tests, including grade 7–12 ids accepted and grade 0/13 rejected) |
 | Alembic `upgrade head` → `check` → `downgrade base` → `upgrade head` (disposable SQLite) | clean, no drift (verified with the primary release; the secondary work changes no schema) |
 | `npm run lint`, `npm run typecheck` | clean |
-| `vitest` | 38 passed (the per-point tests run over all 317 points) |
+| `vitest` | 44 passed (the per-point tests run over all 317 points) |
 | `next build` | succeeds |
 
 The vitest suite covers:
