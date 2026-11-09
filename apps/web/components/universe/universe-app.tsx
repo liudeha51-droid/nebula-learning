@@ -11,7 +11,7 @@ import {MathAnimationPlayer, type PlayerPrefs} from './player/math-animation-pla
 import {StudentPrediction} from './player/student-prediction';
 import {ChallengePanel} from './player/challenge-panel';
 import {Tex} from './player/tex';
-import {KnowledgeMap, GRADE_COLORS, STAGES} from './knowledge-map';
+import {KnowledgeMap, STAGES, gradeStyle} from './knowledge-map';
 import {FrontierPage} from './frontier';
 import {SoundContext, playTone} from './stage';
 
@@ -79,7 +79,7 @@ function UniverseHome() {
       <div className="section-title lower-heading"><div><div className="eyebrow">{label.toUpperCase()} · {zh} · GRADES {grades[0]}–{grades[grades.length - 1]}</div><h2 id={`u-stage-${stage}`}>{stage === 'primary' ? 'Primary worlds' : stage === 'junior' ? 'Junior secondary worlds' : 'Senior secondary worlds'}</h2>{stage !== 'primary' && <p className="muted">{stage === 'junior' ? 'People’s Education Press (人教版) Grades 7–9 sequence.' : 'People’s Education Press A edition (人教A版 2019): required books 1–2 and selective-required books 1–3.'}</p>}</div></div>
       <div className="u-worlds">{WORLDS.filter(w => w.stage === stage).map(w => {
         const pts = POINTS.filter(p => p.grade === w.grade); const levels = pts.reduce((s, p) => s + levelsOf(progress[p.id]).length, 0);
-        return <Link key={w.grade} href={`/universe/grade/${w.grade}`} className={`u-world g${w.grade}`} style={{'--g': GRADE_COLORS[w.grade - 1]} as React.CSSProperties}>
+        return <Link key={w.grade} href={`/universe/grade/${w.grade}`} className={`u-world g${w.grade}`} style={gradeStyle(w.grade)}>
           <span className="u-world-num">{w.grade}</span>
           <span className="eyebrow">GRADE {w.grade} · {w.world.toUpperCase()}</span>
           <h3>{w.title}</h3><span lang="zh-CN" className="zh">{w.title_zh}</span>
@@ -89,10 +89,10 @@ function UniverseHome() {
         </Link>;
       })}</div></section>)}
     <div className="section-title lower-heading"><div><div className="eyebrow">SIGNATURE EXPERIENCES</div><h2>Moments of discovery</h2></div></div>
-    <div className="u-signature">{SIGNATURE.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}>
+    <div className="u-signature">{SIGNATURE.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={gradeStyle(p.grade)}>
       <span className="eyebrow">GRADE {p.grade}</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small>{!ready(p) && <em>Storyboard preview</em>}</Link>; })}</div>
     <div className="section-title lower-heading"><div><div className="eyebrow">JOURNEYS · 数学之旅</div><h2>Let the mathematics flow</h2><p className="muted">Continuous, free-flowing animations: watch an idea grow, drift and transform — then take the controls and let it run.</p></div></div>
-    <div className="u-signature u-journeys">{JOURNEYS.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}>
+    <div className="u-signature u-journeys">{JOURNEYS.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={gradeStyle(p.grade)}>
       <span className="eyebrow">GRADE {p.grade} · JOURNEY</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small></Link>; })}</div>
     <Link href="/universe/frontier" className="u-frontier-teaser"><span className="eyebrow">THE FRONTIER · 数学前沿</span><strong>Problems AI has taken on, from the Millennium Prize Problems to the olympiad</strong><span>The seven $1 million problems, famous conjectures and IMO 2025 problems — what they ask, what OpenAI claimed, how far it has been checked, and explorers to try. <ArrowRight size={14}/></span></Link>
     <div className="section-title lower-heading"><div><div className="eyebrow">CROSS-GRADE KNOWLEDGE SYSTEM</div><h2>How the ideas connect</h2><p className="muted">Select any point to light up what it builds on and what it unlocks in later grades.</p></div><Link className="small-link" href="/universe/map">Full screen <ArrowRight size={13}/></Link></div>
@@ -119,7 +119,7 @@ function GradePage({grade}: {grade: Grade}) {
   const w = getWorld(grade);
   const [domain, setDomain] = useState<DomainId | 'all'>('all');
   const chapters = chaptersInGrade(grade);
-  return <div style={{'--g': GRADE_COLORS[grade - 1]} as React.CSSProperties}>
+  return <div style={gradeStyle(grade)}>
     <Crumbs items={[['Universe', '/universe'], [`Grade ${grade}`, '']]}/>
     <section className={`u-world-banner g${grade}`}>
       <div><span className="eyebrow">GRADE {grade} · {w.world.toUpperCase()}</span><h1>{w.title}</h1><p lang="zh-CN" className="zh-lead">{w.title_zh}</p><p>{w.objective}</p></div>
@@ -157,7 +157,7 @@ function PointPage({point, reduced}: {point: KnowledgePoint; reduced: boolean}) 
   const onPredict = useCallback(() => { setPredicted(true); mark(point.id, 3); }, [mark, point.id]);
   const idx = POINTS.findIndex(p => p.id === point.id); const prev = POINTS[idx - 1], next = POINTS[idx + 1];
 
-  return <div style={{'--g': GRADE_COLORS[point.grade - 1]} as React.CSSProperties}>
+  return <div style={gradeStyle(point.grade)}>
     <Crumbs items={[['Universe', '/universe'], [`Grade ${point.grade}`, `/universe/grade/${point.grade}`], [chapter.title, `/universe/grade/${point.grade}`], [point.title, '']]}/>
     <header className="u-point-head">
       <div><span className="eyebrow">GRADE {point.grade} · {world.world.toUpperCase()} · {getDomain(point.domain).title.toUpperCase()}</span>
@@ -202,7 +202,7 @@ function Unbuilt({point}: {point: KnowledgePoint}) {
 
 function Extend({point}: {point: KnowledgePoint}) {
   const pre = point.prerequisites.map(id => getPoint(id)!); const next = unlocks(point.id); const rel = related(point.id);
-  const Card = ({p}: {p: KnowledgePoint}) => <Link href={`/universe/k/${p.id}`} className="u-link-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}><span className="eyebrow">GRADE {p.grade}</span><strong>{p.title}</strong><span lang="zh-CN" className="zh">{p.title_zh}</span></Link>;
+  const Card = ({p}: {p: KnowledgePoint}) => <Link href={`/universe/k/${p.id}`} className="u-link-card" style={gradeStyle(p.grade)}><span className="eyebrow">GRADE {p.grade}</span><strong>{p.title}</strong><span lang="zh-CN" className="zh">{p.title_zh}</span></Link>;
   return <div className="u-extend">
     <section className="panel"><div className="eyebrow">EXTENSION ACTIVITIES · 拓展</div><h3>Keep exploring</h3><ul>{point.extension_activities.map(x => <li key={x}>{x}</li>)}</ul></section>
     <section className="panel u-connections">

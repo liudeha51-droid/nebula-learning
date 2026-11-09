@@ -158,6 +158,22 @@ Their exact maths (BigInt rationals, 50-digit π, sieves) is in `lib/universe/fr
 - The OpenAI claims are summarised from the repository's own descriptions and from news coverage. This app does not verify them.
 - The session that built this page could not reach the official IMO site, OpenAI's announcement pages or erdosproblems.com; IMO statements are paraphrased and their answers were re-derived by computation.
 
+## Colour themes
+
+The Universe has a bright, child-friendly theme, **on by default**, and the original night theme. A **Night / Bright** button in the top bar switches between them; the choice is saved in the browser.
+
+- The theme applies to the Universe pages, including the sidebar and top bar while on them. The rest of the site (practice, physics graph, analytics, …) keeps the night theme.
+- Implementation:
+  - `app/playful.css` holds every rule, scoped under `.app-shell[data-theme="playful"]`.
+  - `lib/universe/theme.ts` stores the choice.
+  - `gradeStyle()` in `knowledge-map.tsx` gives each grade a vivid colour plus a darker text shade in the bright theme, falling back to the pastels in the night theme.
+- Look:
+  - a warm cream background with soft colour blobs
+  - sunny-yellow "chunky" buttons, rounded cards and pill shapes
+  - the rounded Nunito font, bundled locally via `@fontsource-variable/nunito`
+- Animation stages and the knowledge map stay a deep night-sky "board" inside a thick, grade-coloured frame. Every engine was designed for a dark canvas, so this keeps their contrast; the controls and captions around them are light.
+- Contrast was measured, not guessed. A browser script sampled the real background behind every visible text element (about 3,700 across the home page, grade pages, a lesson's Observe/Explore/Apply/Understand levels, the map and the frontier, at 1280 px and 390 px). All of them meet WCAG AA, after five fixes found by the audit. SVG text inside the stages was excluded, since those canvases are unchanged.
+
 ## Learning levels
 
 Each knowledge point has six levels: Observe, Explore, Discover, Understand, Apply and Extend.

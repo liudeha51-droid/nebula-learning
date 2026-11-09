@@ -1,5 +1,5 @@
 'use client';
-import {useMemo, useState} from 'react';
+import {useMemo, useState, type CSSProperties} from 'react';
 import Link from 'next/link';
 import {Search} from 'lucide-react';
 import {DOMAINS, POINTS, CHAPTERS, getPoint, ancestry, unlocks, related} from '@/lib/universe/curriculum';
@@ -8,6 +8,11 @@ import {levelsOf, useProgress} from '@/lib/universe/progress';
 
 const COL = 172, LEFT = 150, TOP = 46, GAP = 27, PER_ROW = 5;
 export const GRADE_COLORS = ['#ffd27a', '#7fdcc4', '#8ec9ff', '#b9a2ff', '#ff9fd0', '#ffab84', '#a8e070', '#6fd3e8', '#9fa8ff', '#e09bff', '#ff8fa8', '#ffc46b'];
+/**
+ * Inline style giving an element its grade colour. The bright theme defines --grade-N (vivid fill)
+ * and --grade-N-text (a readable shade on white); without it the night pastels apply.
+ */
+export const gradeStyle = (grade: number) => ({'--g': `var(--grade-${grade}, ${GRADE_COLORS[grade - 1]})`, '--gdx': `var(--grade-${grade}-text)`}) as CSSProperties;
 export const STAGES: [Stage, string, string, number[]][] = [['primary', 'Primary', '小学', [1, 2, 3, 4, 5, 6]], ['junior', 'Junior secondary', '初中', [7, 8, 9]], ['senior', 'Senior secondary', '高中', [10, 11, 12]]];
 const ALL_GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
