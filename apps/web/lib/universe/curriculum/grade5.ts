@@ -83,6 +83,13 @@ g.k('g5-prime-factorization', 'Prime factorization (enrichment)', '分解质因�
   x: ['Factorise 360. Why is it so “friendly”?'], f: '60 = 2^2 \\times 3 \\times 5',
 });
 
+g.k('g5-clock-stars', 'Signature: Clock arithmetic and the circle of fifths', '招牌动画：时钟算术与五度圈', {
+  d: 'On a clock 9 + 5 = 2. Hop round a circle of points by a fixed step and a star appears; it visits every point exactly when the step and the number of points share no common factor.', t: ['Remainders', 'Greatest common factor', 'Patterns in music (enrichment)'],
+  o: ['Add on a clock by wrapping round', 'Predict when hops visit every point using the greatest common factor'], pre: ['g5-gcf', 'g2-elapsed'], rel: ['g4-times-circle'],
+  e: 'journey', c: {mode: 'clock', n: 12, m: 7}, m: ['Clock time can go past 12', 'Every step size visits every point'],
+  q: [N('It is 10 o’clock. What time will it be in 7 hours? (1–12)', 5, '17 − 12 = 5.'), N('Hopping 3 at a time around 12 points, how many hops until you are back?', 4, '12 ÷ gcd(12, 3) = 4.')],
+  x: ['On a piano, start at C and keep going up 7 semitones (C, G, D, …). How many steps until you reach a C again?'], f: 'a + b \\pmod{12}',
+});
 g.chapter('g5-fractions', 'Fractions', '分数的意义和性质与加减法', 'number', 'Subdivide, regroup and compare fractions.');
 g.k('g5-fraction-division', 'Fractions as division', '分数与除法', {
   d: 'Sharing 3 cakes among 4 people gives each 3/4 of a cake: a ÷ b = a/b.', t: ['Meaning of fractions', 'Fraction units', 'Fractions and division'],

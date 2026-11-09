@@ -4,12 +4,12 @@ The Mathematics Universe is an interactive, animated mathematics curriculum insi
 
 | Stage | Grades | Source sequence | Knowledge points | Chapters |
 | --- | --- | --- | --- | --- |
-| Primary 小学 | 1–6 | Mainland China compulsory-education mathematics curriculum | 198 | 47 |
-| Junior secondary 初中 | 7–9 | People’s Education Press (人教版) 七年级上册 … 九年级下册 | 60 | 31 |
-| Senior secondary 高中 | 10–12 | 人教A版 (2019): 必修第一册, 必修第二册, 选择性必修第一、二、三册 | 55 | 18 |
-| **Total** | | | **313** | **96** |
+| Primary 小学 | 1–6 | Mainland China compulsory-education mathematics curriculum | 200 | 47 |
+| Junior secondary 初中 | 7–9 | People’s Education Press (人教版) 七年级上册 … 九年级下册 | 61 | 31 |
+| Senior secondary 高中 | 10–12 | 人教A版 (2019): 必修第一册, 必修第二册, 选择性必修第一、二、三册 | 56 | 18 |
+| **Total** | | | **317** | **96** |
 
-The totals include five **journeys** (see below), which are signature points inside existing chapters.
+The totals include nine **journeys** (see below), which are signature points inside existing chapters.
 
 The senior “elective” content included is the **selective-required (选择性必修) books 1–3**. The free elective courses (选修 A–E: e.g. university-preparatory, engineering, economics, humanities and physical-education/arts mathematics) are **not** included. Grades 10–12 are a teaching order, not an official grade assignment: schools schedule the senior books differently. It is not a separate application: it uses the same Next.js catch-all route, login, sidebar and design tokens, and stores learner progress in the existing FastAPI backend.
 
@@ -26,8 +26,8 @@ The senior “elective” content included is the **selective-required (选择�
 ## Curriculum data model (`apps/web/lib/universe/`)
 
 - `types.ts`: `KnowledgePoint` has the fields the blueprint requires: `id`, `grade`, `domain`, `chapter`, `title` (+ `title_zh`), `description`, `learning_objectives`, `prerequisites`, `related_concepts`, `animation_id`, `animation_type`, `interaction_config`, `misconceptions`, `assessment`, `extension_activities`. It also has `topics` (the blueprint topics it covers) and an optional LaTeX `formula`.
-- `curriculum/grade1.ts` … `grade6.ts`: **198 knowledge points in 47 chapters** (including two journeys). Chapters per grade follow the blueprint: 6 / 7 / 9 / 8 / 8 / 9. IDs are stable and grade-prefixed (`g5-parallelogram`).
-- `curriculum/grade7.ts` … `grade12.ts`: **115 knowledge points in 49 chapters** (12 / 10 / 9 / 10 / 5 / 3 chapters; 24 / 20 / 16 / 28 / 17 / 10 points, including three journeys). Every secondary chapter records its textbook volume in `Chapter.book` (for example `必修第一册`). `GradeWorld.stage` and `stageOf(grade)` give the school stage.
+- `curriculum/grade1.ts` … `grade6.ts`: **200 knowledge points in 47 chapters** (including four journeys). Chapters per grade follow the blueprint: 6 / 7 / 9 / 8 / 8 / 9. IDs are stable and grade-prefixed (`g5-parallelogram`).
+- `curriculum/grade7.ts` … `grade12.ts`: **117 knowledge points in 49 chapters** (12 / 10 / 9 / 10 / 5 / 3 chapters; 24 / 20 / 17 / 29 / 17 / 10 points, including five journeys). Every secondary chapter records its textbook volume in `Chapter.book` (for example `必修第一册`). `GradeWorld.stage` and `stageOf(grade)` give the school stage.
 - Relationships are stored explicitly: `prerequisites` is a directed edge list (an acyclic graph, always pointing to the same or an earlier grade, and crossing stages where it should, e.g. `g10-am-gm` builds on `g8-expand`), and `related_concepts` is treated as symmetric. Reverse edges ("unlocks") and transitive ancestry are derived in `curriculum/index.ts`.
 - Domains are the five knowledge systems from the blueprint (Number Systems, Arithmetic Operations, Quantitative Relationships, Geometry, Statistics & Probability) plus **Functions (函数)** for the secondary function strand.
 
@@ -76,7 +76,7 @@ The 18 secondary engines (each with several modes; secondary points also reuse `
 
 ### Journeys (free-flowing sequences)
 
-The `journey` engine (`lib/universe/engines/journey.ts`, `components/universe/engines/journey.tsx`) holds five continuous, imaginative sequences. Instead of stepping through a diagram, each follows one image as it grows, drifts and morphs. Scene time flows across scene boundaries, so the motion never resets between scenes. Their Explore modes run on a free-running animation clock with play/pause; it starts paused when the operating system requests reduced motion.
+The `journey` engine (`lib/universe/engines/journey.ts`, `components/universe/engines/journey.tsx`, `journey-algebra.tsx`) holds nine continuous, imaginative sequences. Instead of stepping through a diagram, each follows one image as it grows, drifts and morphs. Scene time flows across scene boundaries, so the motion never resets between scenes. Their Explore modes run on a free-running animation clock with play/pause; it starts paused when the operating system requests reduced motion.
 
 | Point | Journey | Imagery |
 | --- | --- | --- |
@@ -85,6 +85,15 @@ The `journey` engine (`lib/universe/engines/journey.ts`, `components/universe/en
 | `g10-epicycles` | Circles that draw waves | Circles ride on circles; their tip draws a wave that stiffens from a sine into a square (or sawtooth) wave |
 | `g11-halving` | Halving forever | 1/2 + 1/4 + … paints a square while the camera dives endlessly into the self-similar corner (a seamless loop) |
 | `g11-sunflower` | The sunflower’s secret angle | The seed angle sweeps until it locks at the golden angle 137.508°; 13 and 21 spiral arms; Fibonacci ratios → φ |
+| `g6-snowflake-group` | A snowflake’s symmetries | A glowing snowflake turns by 60° and flips; its 12 moves gather into a ring and fill a coloured group table (D6). Explore: turn and flip it yourself and see the move highlighted in the table |
+| `g5-clock-stars` | Clock arithmetic and the circle of fifths | 9 + 5 ≡ 2 (mod 12); hopping 7 notes draws the circle of fifths; each step k closes after 12 ÷ gcd(12, k) hops. Explore: any n and k, with optional musical notes |
+| `g9-wallpaper` | Seventeen ways to repeat | A golden motif multiplies into p1 → p2 → p4 → p4m and p6m patterns; pentagons leave a gap while hexagons fit (only 2-, 3-, 4-, 6-fold turns); 17 wallpaper groups, 230 space groups |
+| `g10-quintic-roots` | Roots that dance | The roots of x⁵ − x − c move as c circles one branch point and two of them swap; the four swaps generate all 120 permutations (S5), Galois’s reason there is no quintic formula. Explore: drag c yourself |
+
+The last four were made after the video *抽象代数 · 结构之美* (“Abstract algebra: the beauty of structure”). They take its scenes and glowing look, rebuilt as interactive SVG. Their maths is tested in `journey-algebra.test.ts`:
+- the 12 snowflake moves satisfy the group laws
+- the hop rule holds for every step
+- each loop for c returns to c = 1 and swaps exactly two roots, and together the swaps generate a group of order 120
 
 The journeys are also listed in their own row on the home page.
 
@@ -203,7 +212,7 @@ Each knowledge point has six levels: Observe, Explore, Discover, Understand, App
 | Backend `pytest` | 153 passed (5 universe tests, including grade 7–12 ids accepted and grade 0/13 rejected) |
 | Alembic `upgrade head` → `check` → `downgrade base` → `upgrade head` (disposable SQLite) | clean, no drift (verified with the primary release; the secondary work changes no schema) |
 | `npm run lint`, `npm run typecheck` | clean |
-| `vitest` | 18 passed (the per-point tests run over all 313 points) |
+| `vitest` | 38 passed (the per-point tests run over all 317 points) |
 | `next build` | succeeds |
 
 The vitest suite covers:
@@ -213,7 +222,7 @@ The vitest suite covers:
 - secondary curriculum shape: every grade 7–12 world has at least 3 chapters and 10 points, and every secondary chapter names its textbook volume
 
 Browser checks used headless Chromium against the running app, logged in as a development learner:
-- **All 308 knowledge points at 1280 px and at 390 px** (and the five journeys, added afterwards, at both widths): every scene chip, Explore with button interactions, and Apply. No page errors and no horizontal page overflow.
+- **All 308 knowledge points at 1280 px and at 390 px** (and the nine journeys, added afterwards, at both widths): every scene chip, Explore with button interactions, and Apply. No page errors and no horizontal page overflow.
 - Contact sheets of the discover scene and the Explore mode of every secondary engine and journey were inspected by eye. Journey Explore modes were checked to keep moving by default and to start paused with reduced motion. This found and fixed: a NaN in scenes opened at their first frame (a `fix()` rounding bug for values like `3.7e-12`), an incorrect expected value in the prize-wheel scene, and several overlapping labels.
 - End-to-end flow: prediction gate → reveal → resume, comprehension answer, server persistence (level mask), progress surviving a reload, solving on the algebra balance, knowledge-map selection, and the existing routes (`/`, `/practice`, `/nebula`, `/notes`, `/analytics`). For the secondary stages: the Grade 12 page and its textbook label, a senior point (`g10-am-gm`) answered in Apply and manipulated in Explore with the level persisted by the API, and the map's Senior secondary filter.
 

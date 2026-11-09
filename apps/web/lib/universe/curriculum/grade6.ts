@@ -247,6 +247,13 @@ g.k('g6-routes', 'Direction, position and route maps', '位置与方向（路线
   x: ['Describe your route to school using directions and distances.'],
 });
 
+g.k('g6-snowflake-group', 'Signature: A snowflake’s symmetries', '招牌动画：雪花的对称群', {
+  d: 'Turn a snowflake by 60° or flip it over a mirror line and it looks the same. Its 12 moves combine like numbers do — the first taste of a group, the core idea of abstract algebra.', t: ['Rotation and axial symmetry', 'Composing moves', 'Groups (enrichment)'],
+  o: ['Find every rotation and reflection that leaves a shape unchanged', 'Combine two symmetry moves into one'], pre: ['g6-rotation', 'g6-symmetry'], rel: ['g9-wallpaper'],
+  e: 'journey', c: {mode: 'symmetry'}, m: ['Turning by 360° is a new move', 'The order of two moves never matters'],
+  q: [N('How many symmetries (turns and flips, including doing nothing) does a square have?', 8, '4 turns + 4 flips.'), N('Turn a snowflake by 240°, then by 180°. What single turn between 0° and 359° does the same?', 60, '420° − 360° = 60°.')],
+  x: ['Cut a paper snowflake. Mark one arm and find all 12 positions in which it fits back into its outline.'], f: '|D_6| = 12',
+});
 g.chapter('g6-stats', 'Statistics and Probability', '统计与可能性', 'statistics', 'Choose charts and run experiments to compare theory with observation.');
 g.k('g6-pie', 'Pie charts and choosing a chart', '扇形统计图', {
   d: 'A pie chart shows each part as a percentage of the whole; bar and line charts suit other questions.', t: ['Statistical tables', 'Bar charts', 'Line charts', 'Pie charts', 'Percentage statistics'],

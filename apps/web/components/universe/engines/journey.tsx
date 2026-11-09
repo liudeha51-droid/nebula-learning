@@ -6,6 +6,7 @@ import {journey, PHI, GOLDEN_DEG, fib, inscribed, circumscribed, type JourneyCon
 import {clamp, ease, eseg, fmt, lerp, seg} from '@/lib/universe/math';
 import {range} from '@/lib/universe/engines/util';
 import type {EngineView} from './types';
+import {SymmetryScene, SymmetryExplore, ClockScene, ClockExplore, WallpaperScene, WallpaperExplore, QuinticScene, QuinticExplore} from './journey-algebra';
 
 /** Scene time that keeps flowing across scene boundaries (6 units per scene). */
 const flow = (scene: number, p: number) => (scene + p) * 6;
@@ -191,6 +192,10 @@ function Scene({c, scene, p}: {c: JourneyConfig; scene: number; p: number}) {
     case 'epicycles': return <EpicycleScene scene={scene} p={p}/>;
     case 'halving': return <HalvingScene scene={scene} p={p}/>;
     case 'sunflower': return <SunflowerScene scene={scene} p={p}/>;
+    case 'symmetry': return <SymmetryScene scene={scene} p={p}/>;
+    case 'clock': return <ClockScene c={c} scene={scene} p={p}/>;
+    case 'wallpaper': return <WallpaperScene scene={scene} p={p}/>;
+    case 'quintic': return <QuinticScene scene={scene} p={p}/>;
     default: return <TimesScene c={c} scene={scene} p={p}/>;
   }
 }
@@ -200,6 +205,10 @@ function Explore({c}: {c: JourneyConfig}) {
     case 'epicycles': return <EpicycleExplore/>;
     case 'halving': return <HalvingExplore/>;
     case 'sunflower': return <SunflowerExplore/>;
+    case 'symmetry': return <SymmetryExplore/>;
+    case 'clock': return <ClockExplore c={c}/>;
+    case 'wallpaper': return <WallpaperExplore/>;
+    case 'quintic': return <QuinticExplore/>;
     default: return <TimesExplore c={c}/>;
   }
 }

@@ -44,6 +44,13 @@ g.k('g9-rotation', 'Rotation and central symmetry', '旋转与中心对称', {
   x: ['Which letters of the alphabet are centrally symmetric?'],
 });
 
+g.k('g9-wallpaper', 'Signature: Seventeen ways to repeat', '招牌动画：十七种壁纸图案', {
+  d: 'Slides, turns and mirrors copy one motif across the plane. Only 2-, 3-, 4- and 6-fold turns can repeat without gaps, and there are exactly 17 kinds of wallpaper pattern.', t: ['Translation', 'Rotation and central symmetry', 'Reflections', 'Symmetry groups (enrichment)'],
+  o: ['Identify translations, rotations and reflections in repeating patterns', 'Explain why fivefold patterns cannot tile'], pre: ['g7-translation', 'g9-rotation'], rel: ['g6-snowflake-group'],
+  e: 'journey', c: {mode: 'wallpaper'}, m: ['Any regular polygon can tile a floor', 'Infinitely many kinds of wallpaper exist'],
+  q: [M('Which regular polygon cannot tile a floor on its own?', ['Triangle', 'Square', 'Pentagon', 'Hexagon'], 'Pentagon', '108° does not divide 360°.'), N('How many wallpaper symmetry groups are there?', 17, 'Fedorov, 1891.')],
+  x: ['Photograph a tiled floor or a fabric pattern. Which turns and mirrors does it have?'],
+});
 g.chapter('g9-circle', 'Circles', '圆', 'geometry', 'Angles, tangents and arc lengths.', UP);
 g.k('g9-inscribed-angle', 'The inscribed angle theorem', '圆周角定理', {
   d: 'An inscribed angle is half the central angle on the same arc, so all inscribed angles on that arc are equal; a diameter subtends 90°.', t: ['Chords, arcs and central angles', 'Inscribed angles', 'Angle in a semicircle', 'Cyclic quadrilaterals'],

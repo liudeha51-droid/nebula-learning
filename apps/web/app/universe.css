@@ -160,7 +160,7 @@
   .u-scene-tag{display:none}
 }
 @media (prefers-reduced-motion:reduce){.u-world,.u-point-card{transition:none}.u-world:hover,.u-point-card:hover{transform:none}}
-@media (min-width:1101px){.u-signature.u-journeys{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:1101px){.u-signature.u-journeys{grid-template-columns:repeat(3,1fr)}}
 /* ---------- The frontier ---------- */
 .u-frontier-teaser{display:flex;flex-direction:column;gap:6px;margin:28px 0 8px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(ellipse at 95% 0%,rgba(255,143,199,.18),transparent 60%),var(--panel);transition:border-color .2s}
 .u-frontier-teaser:hover{border-color:#ff8fc7}.u-frontier-teaser strong{font-size:18px}.u-frontier-teaser span:last-child{color:var(--muted);font-size:14px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}

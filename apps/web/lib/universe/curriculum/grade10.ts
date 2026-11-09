@@ -164,6 +164,13 @@ g.k('g10-complex-multiply', 'Operations with complex numbers', '复数的四则�
   x: ['What happens geometrically when you multiply by i four times?'], f: 'i^2=-1',
 });
 
+g.k('g10-quintic-roots', 'Signature: Roots that dance', '招牌动画：舞动的根', {
+  d: 'Slowly change the constant in x⁵ − x − c = 0 around a loop: the five complex roots move and trade places. These swaps make up all 120 rearrangements — Galois’s reason why degree five has no formula.', t: ['Complex numbers in the plane', 'Roots of polynomial equations', 'Permutations and groups (enrichment)'],
+  o: ['Plot roots of an equation in the complex plane', 'Relate the rearrangements of roots to a group'], pre: ['g10-complex-plane', 'g9-quadratic-formula'], rel: ['g12-perm-comb'],
+  e: 'journey', c: {mode: 'quintic'}, m: ['Every polynomial equation has a formula like the quadratic formula', 'Roots always stay in their own place'],
+  q: [N('In how many ways can 5 roots be rearranged?', 120, '5! = 120.'), N('x² − 7x + 12 = 0. Sum of the two roots?', 7, 'The roots 3 and 4 add up to 7.')],
+  x: ['Look up Évariste Galois. What did he write the night before his duel in 1832?'],
+});
 g.chapter('g10-solid-geometry', 'Introduction to Solid Geometry', '立体几何初步', 'geometry', 'Solids, volumes and spatial relationships of points, lines and planes.', B2);
 g.k('g10-polyhedra-volume', 'Surface areas and volumes of solids', '柱、锥、台、球的表面积与体积', {
   d: 'Three pyramids of equal volume fill a prism, so a pyramid is ⅓Sh; frustums are big minus small pyramids.', t: ['Prisms, pyramids, frustums, spheres', 'Oblique drawing', 'Surface areas', 'Volumes'],

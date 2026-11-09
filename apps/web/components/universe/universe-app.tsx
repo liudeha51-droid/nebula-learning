@@ -17,7 +17,7 @@ import {SoundContext, playTone} from './stage';
 
 const PREFS_KEY = 'nebula-universe-prefs-v1';
 /** Free-flowing journeys: continuous, imaginative sequences that drift and morph. */
-const JOURNEYS = ['g4-times-circle', 'g6-rolling-pi', 'g10-epicycles', 'g11-halving', 'g11-sunflower'];
+const JOURNEYS = ['g4-times-circle', 'g5-clock-stars', 'g6-snowflake-group', 'g6-rolling-pi', 'g9-wallpaper', 'g10-epicycles', 'g10-quintic-roots', 'g11-halving', 'g11-sunflower'];
 const SIGNATURE = ['g6-cake', 'g6-cone-pour', 'g5-parallelogram', 'g1-make-ten', 'g8-pythagorean', 'g9-complete-square', 'g10-sine-graph', 'g10-am-gm', 'g11-ellipse', 'g11-rate-of-change', 'g12-normal', 'g6-circle-area'];
 
 function usePrefs(): [PlayerPrefs, (p: PlayerPrefs) => void] {
