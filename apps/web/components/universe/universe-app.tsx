@@ -11,11 +11,11 @@ import {MathAnimationPlayer, type PlayerPrefs} from './player/math-animation-pla
 import {StudentPrediction} from './player/student-prediction';
 import {ChallengePanel} from './player/challenge-panel';
 import {Tex} from './player/tex';
-import {KnowledgeMap, GRADE_COLORS} from './knowledge-map';
+import {KnowledgeMap, GRADE_COLORS, STAGES} from './knowledge-map';
 import {SoundContext, playTone} from './stage';
 
 const PREFS_KEY = 'nebula-universe-prefs-v1';
-const SIGNATURE = ['g6-cake', 'g6-cone-pour', 'g5-parallelogram', 'g1-make-ten', 'g2-commutative', 'g5-equations', 'g6-circle-area', 'g6-frac-divide'];
+const SIGNATURE = ['g6-cake', 'g6-cone-pour', 'g5-parallelogram', 'g1-make-ten', 'g8-pythagorean', 'g9-complete-square', 'g10-sine-graph', 'g10-am-gm', 'g11-ellipse', 'g11-rate-of-change', 'g12-normal', 'g6-circle-area'];
 
 function usePrefs(): [PlayerPrefs, (p: PlayerPrefs) => void] {
   // Rendered only on the client (the shell waits for the session check), so storage can be read lazily.
@@ -37,7 +37,7 @@ export default function UniverseApp({path, profileReducedMotion}: {path: string;
   let page: React.ReactNode;
   if (parts.length === 1) page = <UniverseHome/>;
   else if (parts[1] === 'map') page = <MapPage/>;
-  else if (parts[1] === 'grade' && /^[1-6]$/.test(parts[2] ?? '')) page = <GradePage grade={Number(parts[2]) as Grade}/>;
+  else if (parts[1] === 'grade' && /^([1-9]|1[0-2])$/.test(parts[2] ?? '')) page = <GradePage grade={Number(parts[2]) as Grade}/>;
   else if (parts[1] === 'k' && parts[2] && getPoint(parts[2])) page = <PointPage key={parts[2]} point={getPoint(parts[2])!} reduced={reduced}/>;
   else page = <div className="empty"><Compass size={28}/><h3>Uncharted region</h3><p>This part of the universe does not exist yet.</p><Link className="button" href="/universe">Back to the universe</Link></div>;
   return <ProgressContext.Provider value={progress}><div className="u-root">{page}</div></ProgressContext.Provider>;
@@ -63,44 +63,48 @@ function UniverseHome() {
         <span className="pill"><Sparkles size={13}/> THE ANIMATED MATHEMATICS UNIVERSE</span>
         <h1>Mathematics is something<br/>you can <span className="accent">explore</span>.</h1>
         <p lang="zh-CN" className="zh-lead">数学，是可以探索的世界。</p>
-        <p>Six worlds. Watch quantities form, move the objects yourself, predict before you are told, and discover why the equations are true.</p>
+        <p>Twelve worlds, from counting to calculus. Watch quantities form, move the objects yourself, predict before you are told, and discover why the equations are true.</p>
         <div className="button-row"><Link className="button primary" href="/universe/grade/1">Start in Grade 1 <ArrowRight size={16}/></Link><Link className="button" href="/universe/map"><MapIcon size={16}/>Open the knowledge map</Link><Sync/></div>
       </div>
       <dl className="u-stats">
-        <div><dt>Grade worlds</dt><dd>6</dd></div><div><dt>Chapters</dt><dd>{CHAPTERS.length}</dd></div>
+        <div><dt>Grade worlds</dt><dd>{WORLDS.length}</dd></div><div><dt>Chapters</dt><dd>{CHAPTERS.length}</dd></div>
         <div><dt>Knowledge points</dt><dd>{POINTS.length}</dd></div><div><dt>Animation engines live</dt><dd>{built}/{engines.size}</dd></div>
       </dl>
     </section>
-    <div className="section-title lower-heading"><div><div className="eyebrow">SIX WORLDS · 六个世界</div><h2>Choose a world</h2></div></div>
-    <div className="u-worlds">{WORLDS.map(w => {
-      const pts = POINTS.filter(p => p.grade === w.grade); const levels = pts.reduce((s, p) => s + levelsOf(progress[p.id]).length, 0);
-      return <Link key={w.grade} href={`/universe/grade/${w.grade}`} className={`u-world g${w.grade}`} style={{'--g': GRADE_COLORS[w.grade - 1]} as React.CSSProperties}>
-        <span className="u-world-num">{w.grade}</span>
-        <span className="eyebrow">GRADE {w.grade} · {w.world.toUpperCase()}</span>
-        <h3>{w.title}</h3><span lang="zh-CN" className="zh">{w.title_zh}</span>
-        <p>{w.objective}</p>
-        <span className="u-world-meta">{chaptersInGrade(w.grade).length} chapters · {pts.length} knowledge points</span>
-        <span className="u-bar"><i style={{width: `${(levels / (pts.length * 6)) * 100}%`}}/></span>
-      </Link>;
-    })}</div>
+    {STAGES.map(([stage, label, zh, grades]) => <section key={stage} aria-labelledby={`u-stage-${stage}`}>
+      <div className="section-title lower-heading"><div><div className="eyebrow">{label.toUpperCase()} · {zh} · GRADES {grades[0]}–{grades[grades.length - 1]}</div><h2 id={`u-stage-${stage}`}>{stage === 'primary' ? 'Primary worlds' : stage === 'junior' ? 'Junior secondary worlds' : 'Senior secondary worlds'}</h2>{stage !== 'primary' && <p className="muted">{stage === 'junior' ? 'People’s Education Press (人教版) Grades 7–9 sequence.' : 'People’s Education Press A edition (人教A版 2019): required books 1–2 and selective-required books 1–3.'}</p>}</div></div>
+      <div className="u-worlds">{WORLDS.filter(w => w.stage === stage).map(w => {
+        const pts = POINTS.filter(p => p.grade === w.grade); const levels = pts.reduce((s, p) => s + levelsOf(progress[p.id]).length, 0);
+        return <Link key={w.grade} href={`/universe/grade/${w.grade}`} className={`u-world g${w.grade}`} style={{'--g': GRADE_COLORS[w.grade - 1]} as React.CSSProperties}>
+          <span className="u-world-num">{w.grade}</span>
+          <span className="eyebrow">GRADE {w.grade} · {w.world.toUpperCase()}</span>
+          <h3>{w.title}</h3><span lang="zh-CN" className="zh">{w.title_zh}</span>
+          <p>{w.objective}</p>
+          <span className="u-world-meta">{chaptersInGrade(w.grade).length} chapters · {pts.length} knowledge points{books(w.grade) ? ` · ${books(w.grade)}` : ''}</span>
+          <span className="u-bar"><i style={{width: `${(levels / (pts.length * 6)) * 100}%`}}/></span>
+        </Link>;
+      })}</div></section>)}
     <div className="section-title lower-heading"><div><div className="eyebrow">SIGNATURE EXPERIENCES</div><h2>Moments of discovery</h2></div></div>
     <div className="u-signature">{SIGNATURE.map(id => { const p = getPoint(id)!; return <Link key={id} href={`/universe/k/${id}`} className="u-sig-card" style={{'--g': GRADE_COLORS[p.grade - 1]} as React.CSSProperties}>
       <span className="eyebrow">GRADE {p.grade}</span><strong>{p.title.replace('Signature: ', '')}</strong><span lang="zh-CN" className="zh">{p.title_zh.replace('招牌动画：', '')}</span><small>{p.description}</small>{!ready(p) && <em>Storyboard preview</em>}</Link>; })}</div>
     <div className="section-title lower-heading"><div><div className="eyebrow">CROSS-GRADE KNOWLEDGE SYSTEM</div><h2>How the ideas connect</h2><p className="muted">Select any point to light up what it builds on and what it unlocks in later grades.</p></div><Link className="small-link" href="/universe/map">Full screen <ArrowRight size={13}/></Link></div>
     <section className="panel"><KnowledgeMap compact/></section>
-    <p className="muted u-version">Curriculum {CURRICULUM_VERSION} · aligned to the Mainland China compulsory education mathematics curriculum (Grades 1–6). Animations run in your browser; only your progress is stored.</p>
+    <p className="muted u-version">Curriculum {CURRICULUM_VERSION} · aligned to the Mainland China compulsory education mathematics curriculum (Grades 1–9; Grades 7–9 follow the 人教版 sequence) and the senior high school standard (人教A版 required and selective-required books). The free elective courses (选修 A–E) are not included. Animations run in your browser; only your progress is stored.</p>
   </>;
 }
 
 function MapPage() {
   return <><Crumbs items={[['Universe', '/universe'], ['Knowledge map', '']]}/>
-    <div className="page-heading"><div><div className="eyebrow">KNOWLEDGE CONNECTION GRAPH · 知识图谱</div><h1>{POINTS.length} ideas, one universe</h1><p>Columns are grades, rows are the five knowledge systems. Lines are explicit prerequisite relationships.</p></div></div>
+    <div className="page-heading"><div><div className="eyebrow">KNOWLEDGE CONNECTION GRAPH · 知识图谱</div><h1>{POINTS.length} ideas, one universe</h1><p>Columns are grades, rows are the knowledge systems. Lines are explicit prerequisite relationships — filter by school stage to zoom in.</p></div></div>
     <section className="panel"><KnowledgeMap/></section></>;
 }
 
 function Crumbs({items}: {items: [string, string][]}) {
   return <nav className="u-crumbs" aria-label="Breadcrumb">{items.map(([label, href], i) => <span key={i}>{href ? <Link href={href}>{label}</Link> : <strong>{label}</strong>}{i < items.length - 1 && <ChevronRight size={13}/>}</span>)}</nav>;
 }
+
+/** Textbook volumes a grade draws on, e.g. 必修第一册 / 必修第二册. */
+function books(grade: Grade) { return [...new Set(chaptersInGrade(grade).map(c => c.book).filter(Boolean))].join(' / '); }
 
 function GradePage({grade}: {grade: Grade}) {
   const {progress} = useProgress();
@@ -111,7 +115,7 @@ function GradePage({grade}: {grade: Grade}) {
     <Crumbs items={[['Universe', '/universe'], [`Grade ${grade}`, '']]}/>
     <section className={`u-world-banner g${grade}`}>
       <div><span className="eyebrow">GRADE {grade} · {w.world.toUpperCase()}</span><h1>{w.title}</h1><p lang="zh-CN" className="zh-lead">{w.title_zh}</p><p>{w.objective}</p></div>
-      <div className="u-grade-nav">{grade > 1 && <Link className="button" href={`/universe/grade/${grade - 1}`}><ArrowLeft size={15}/>Grade {grade - 1}</Link>}{grade < 6 && <Link className="button" href={`/universe/grade/${grade + 1}`}>Grade {grade + 1}<ArrowRight size={15}/></Link>}</div>
+      <div className="u-grade-nav">{grade > 1 && <Link className="button" href={`/universe/grade/${grade - 1}`}><ArrowLeft size={15}/>Grade {grade - 1}</Link>}{grade < 12 && <Link className="button" href={`/universe/grade/${grade + 1}`}>Grade {grade + 1}<ArrowRight size={15}/></Link>}</div>
     </section>
     <div className="u-chips" role="radiogroup" aria-label="Filter by domain">
       <button role="radio" aria-checked={domain === 'all'} className={domain === 'all' ? 'on' : ''} onClick={() => setDomain('all')}>All</button>
@@ -119,7 +123,7 @@ function GradePage({grade}: {grade: Grade}) {
     </div>
     {chapters.map(ch => { const pts = pointsInChapter(ch.id).filter(p => domain === 'all' || p.domain === domain); if (!pts.length) return null;
       return <section key={ch.id} className="u-chapter">
-        <div className="u-chapter-head"><span className="u-chapter-num">{String(ch.order).padStart(2, '0')}</span><div><h2>{ch.title} <span lang="zh-CN" className="zh">{ch.title_zh}</span></h2><p>{ch.objective}</p></div></div>
+        <div className="u-chapter-head"><span className="u-chapter-num">{String(ch.order).padStart(2, '0')}</span><div><h2>{ch.title} <span lang="zh-CN" className="zh">{ch.title_zh}</span></h2>{ch.book && <span className="u-book" lang="zh-CN">{grade >= 10 ? '人教A版' : '人教版'} · {ch.book}</span>}<p>{ch.objective}</p></div></div>
         <div className="u-points">{pts.map(p => <Link key={p.id} href={`/universe/k/${p.id}`} className="u-point-card">
           <span className="eyebrow">{getDomain(p.domain).title}</span><strong>{p.title}</strong><span lang="zh-CN" className="zh">{p.title_zh}</span>
           <small>{p.description}</small>

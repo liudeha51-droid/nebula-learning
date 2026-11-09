@@ -273,7 +273,7 @@ def save_note(nid:str,body:NoteBody,user:User=Depends(current),db:Session=Depend
 
 
 # Mathematics Universe: the curriculum and animations run in the browser; only progress is persisted here.
-UNIVERSE_KP=r'^g[1-6]-[a-z0-9-]{2,70}$'
+UNIVERSE_KP=r'^g([1-9]|1[0-2])-[a-z0-9-]{2,70}$'
 UNIVERSE_MAX_POINTS=500
 
 

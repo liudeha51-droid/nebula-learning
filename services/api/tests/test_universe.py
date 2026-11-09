@@ -13,11 +13,18 @@ def test_universe_progress_accumulates_levels(client,student):
     assert [(i['kp_id'],i['levels']) for i in items]==[('g1-make-ten',5),('g6-cake',32)]
 
 
+def test_universe_progress_accepts_secondary_points(client,student):
+    for kp in ('g7-rational-numbers','g9-complete-square','g10-am-gm','g12-normal'):
+        assert client.put(f'/api/v1/universe/progress/{kp}',json={'level':2}).status_code==200
+    assert {i['kp_id'] for i in client.get('/api/v1/universe/progress').json()['items']}=={'g7-rational-numbers','g9-complete-square','g10-am-gm','g12-normal'}
+
+
 def test_universe_progress_validates_input(client,student):
     assert client.put('/api/v1/universe/progress/g1-make-ten',json={'level':7}).status_code==422
     assert client.put('/api/v1/universe/progress/g1-make-ten',json={'level':0}).status_code==422
     assert client.put('/api/v1/universe/progress/g1-make-ten',json={'level':2,'extra':1}).status_code==422
-    assert client.put('/api/v1/universe/progress/g7-unknown',json={'level':1}).status_code==422
+    assert client.put('/api/v1/universe/progress/g13-unknown',json={'level':1}).status_code==422
+    assert client.put('/api/v1/universe/progress/g0-unknown',json={'level':1}).status_code==422
     assert client.put('/api/v1/universe/progress/DROP TABLE',json={'level':1}).status_code in (404,422)
     assert client.put('/api/v1/universe/progress/g1-make-ten',json={'level':1},headers={'X-Nebula-Client':'other'}).status_code==403
 

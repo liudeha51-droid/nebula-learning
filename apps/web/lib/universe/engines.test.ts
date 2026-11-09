@@ -1,9 +1,13 @@
 import {describe, expect, it} from 'vitest';
 import {orderSteps, evaluate, leftToRight} from './engines/laws';
 import {readChinese} from './engines/place-value';
-import {columnAdd, columnSub, longDivision, checkAnswer, gcd, lcm, simplify, primeFactors} from './math';
+import {columnAdd, columnSub, longDivision, checkAnswer, gcd, lcm, simplify, primeFactors, fix, fmt} from './math';
 
 describe('mathematical helpers used by animations', () => {
+  it('rounds values in exponential notation instead of returning NaN', () => {
+    expect(fix(3.7e-12, 2)).toBe(0); expect(fmt(3.7e-12, 2)).toBe('0'); expect(fix(1.5e21, 2)).toBe(1.5e21);
+    expect(fix(1.005, 2)).toBe(1.01); expect(fix(0.1 + 0.2)).toBe(0.3); expect(fix(-2.5e-8, 3)).toBe(0);
+  });
   it('evaluates with the school order of operations', () => {
     expect(evaluate('24-6*3')).toBe(6); expect(evaluate('(24-6)*3')).toBe(54); expect(evaluate('48/(2+6)')).toBe(6);
     expect(evaluate('48/2+6')).toBe(30); expect(evaluate('2*(3+4)*5')).toBe(70); expect(leftToRight('24-6*3')).toBe(54);

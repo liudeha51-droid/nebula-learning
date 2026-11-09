@@ -42,6 +42,10 @@ import {vector} from './vector';
 import {complex} from './complex';
 import {space} from './space';
 import {conic} from './conic';
+import {sequence} from './sequence';
+import {derivative} from './derivative';
+import {combin} from './combin';
+import {distribution} from './distribution';
 /** Pure engine logic registry (storyboards, predictions, challenges). Views live in components/universe/engines. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
@@ -80,4 +84,8 @@ export const LOGIC: Partial<Record<EngineType, EngineLogic<any>>> = {
   complex: complex,
   space: space,
   conic: conic,
+  sequence: sequence,
+  derivative: derivative,
+  combin: combin,
+  distribution: distribution,
 };

@@ -32,6 +32,7 @@
 .u-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
 .u-chips button{min-height:34px;padding:6px 12px;font-size:12px;border-radius:20px}.u-chips button.on{background:color-mix(in srgb,var(--g) 22%,#201e2a);border-color:var(--g);color:#fff}
 .u-chapter{margin:26px 0}
+.u-book{display:inline-block;margin:2px 0 6px;padding:2px 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--g) 50%,transparent);color:var(--g);font-size:11px}
 .u-chapter-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}.u-chapter-head h2{margin:2px 0 2px}.u-chapter-head p{margin:0;font-size:13px}
 .u-chapter-num{font-size:13px;font-weight:700;color:var(--g);border:1px solid var(--g);border-radius:8px;padding:6px 9px;line-height:1}
 .u-points{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}

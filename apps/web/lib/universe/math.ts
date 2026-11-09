@@ -18,7 +18,12 @@ export function simplify(n: number, d: number): [number, number] { const g = gcd
 export function arrangements(n: number): [number, number][] { return factors(n).filter(r => r * r <= n).map(r => [r, n / r]); }
 
 /** Rounds away binary floating error for display and comparison. */
-export const fix = (v: number, places = 10) => Number(Math.round(Number(v + 'e' + places)) + 'e-' + places);
+export function fix(v: number, places = 10): number {
+  if (!Number.isFinite(v)) return v;
+  // Decimal-string shifting avoids 1.005 → 1.00 errors, but only works when String(v) has no exponent.
+  if (/e/i.test(String(v))) return Math.round(v * 10 ** places) / 10 ** places || 0;
+  return Number(Math.round(Number(v + 'e' + places)) + 'e-' + places);
+}
 export const approxEqual = (a: number, b: number, tol = 1e-9) => Math.abs(a - b) <= tol;
 /** Formats a number without floating noise; integers get thin grouping. */
 export function fmt(v: number, maxDecimals = 6): string {
