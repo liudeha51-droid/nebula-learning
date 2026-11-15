@@ -22,6 +22,7 @@ Open the local application at **http://127.0.0.1:3410** after starting both serv
 - The **10-minute disclosure hold**, including analytics/mastery/review-queue side-channel protection.
 - Beta(1,1) heuristic estimates, independent first exposures, provisional target-tier changes and uncertainty-aware recommendations. No scientific calibration claimed.
 - Interactive Cytoscape mathematics and physics maps, searchable accessible concept list, coverage-gap details and concept-specific practice.
+- Animation lab (`/animations`): 12 interactive canvas animations for high school concepts — parabolas, unit circle, secant-to-tangent, vector addition, inscribed angles, law of large numbers, projectile motion, inclines, pendulum energy, collisions, standing waves and Ohm’s law. Each has play/pause/replay, a time scrubber, slow-motion, parameter sliders and live values, honours reduced-motion settings, and is linked from its concept in the knowledge maps. Idealised textbook models, independent of the question bank; 6 of 18 domains have no animation yet.
 - Private autosaved notes, editable MathLive structures/LaTeX source, KaTeX preview; safe scientific calculator with degree/radian and session history.
 - Real persisted accuracy/exposure/difficulty metrics, with missing transfer/retention evidence shown as unavailable, not invented percentages.
 - Administrator question/evidence inspection, revision drafts, review decisions, candidate validation, atomic release-pointer switching, rollback and audit records.

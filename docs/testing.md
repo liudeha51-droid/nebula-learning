@@ -6,7 +6,7 @@ Backend pytest tests use a separate in-memory SQLite database per test and deter
 
 The 600-second gate is tested immediately before and after the boundary, for practice and completed/uncompleted diagnostic/exam sessions. Completion does not shorten it. Extra client timing fields are rejected. Feedback materialization is checked for idempotency. These are deterministic clock-boundary tests, not a claim that every test literally waits ten minutes.
 
-Frontend Vitest tests exercise transport errors, same-origin write headers and null-vs-zero display semantics. ESLint, strict TypeScript and production Next.js build are separate quality gates. Unit tests alone are not UI acceptance.
+Frontend Vitest tests exercise transport errors, same-origin write headers and null-vs-zero display semantics. The animation models in `apps/web/lib/animations.ts` are pure functions of parameters and time and are unit-tested against known results (projectile range, momentum and energy conservation, pendulum period, stationary wave nodes, the inscribed angle theorem) and for finite output at every slider extreme; the canvas drawing itself is checked visually, not by automated tests. ESLint, strict TypeScript and production Next.js build are separate quality gates. Unit tests alone are not UI acceptance.
 
 ## Browser checks
 
