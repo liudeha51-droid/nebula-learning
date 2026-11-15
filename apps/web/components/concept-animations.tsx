@@ -5,7 +5,8 @@ import {ArrowUpRight,Pause,Play,RotateCcw,SlidersHorizontal,Sparkles} from 'luci
 import {ANIMATIONS,initialParams,type AnimationSpec,type Params} from '@/lib/animations';
 import type {KnowledgeNode} from '@/lib/api';
 import {Formula} from './formula-editor';
-import {SCENES} from './animation-scenes';
+import {drawScene} from './animation-scenes';
+import {useTheme} from './theme';
 
 const SPEEDS=[.25,.5,1] as const;
 const prefersReducedMotion=()=>typeof window!=='undefined'&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,6 +20,7 @@ function Stage({spec,concept,reducedMotion}:{spec:AnimationSpec;concept:string;r
   const [width,setWidth]=useState(0);
   const frame=useRef<HTMLDivElement>(null);
   const canvas=useRef<HTMLCanvasElement>(null);
+  const theme=useTheme();
 
   const duration=spec.duration(params);
   const t=Math.min(time,duration);
@@ -50,8 +52,8 @@ function Stage({spec,concept,reducedMotion}:{spec:AnimationSpec;concept:string;r
     const ratio=Math.min(2,window.devicePixelRatio||1);
     if(element.width!==Math.round(width*ratio)||element.height!==Math.round(height*ratio)){element.width=Math.round(width*ratio);element.height=Math.round(height*ratio)}
     context.setTransform(ratio,0,0,ratio,0,0);context.clearRect(0,0,width,height);
-    SCENES[spec.id](context,width,height,params,t);
-  },[spec.id,params,t,width,height]);
+    drawScene(spec.id,theme,context,width,height,params,t);
+  },[spec.id,theme,params,t,width,height]);
 
   function change(key:string,value:number){setParams(current=>({...current,[key]:value}));if(!spec.loop)setTime(0)}
   function toggle(){if(ended){setTime(0);setPlaying(true)}else setPlaying(!playing)}

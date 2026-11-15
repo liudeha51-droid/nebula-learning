@@ -1,6 +1,7 @@
 /** Canvas renderers for the concept animations. Each scene draws one frame from
  * (parameters, time) using the pure models in lib/animations.ts, laid out
  * against the current canvas size so it stays legible on a phone. */
+import {themeColor,type ThemeId} from '@/lib/themes';
 import {type Params,rad,clamp,fmt,parabola,parabolaRoots,parabolaX,circlePoint,trigAngle,secantSlope,secantGap,vectorSum,vectorPhase,inscribed,inscribedPoint,coinRun,coinCount,COIN_FLIPS,projectile,incline,INCLINE_LENGTH,pendulum,collision,cartWidth,COLLISION_TRACK,standingWave,STRING_LENGTH,ohm,CIRCUIT_FLOW} from '@/lib/animations';
 
 type Ctx=CanvasRenderingContext2D;
@@ -8,7 +9,15 @@ export type Scene=(c:Ctx,W:number,H:number,q:Params,t:number)=>void;
 interface Box {l:number;t:number;w:number;h:number}
 interface Plane {X:(x:number)=>number;Y:(y:number)=>number;sx:number;sy:number;box:Box}
 
-const C={text:'#eeecf5',muted:'#aaa6b9',faint:'#5d5873',grid:'#262332',axis:'#4a455c',purple:'#bba7f5',mint:'#92d5c4',amber:'#d8b87d',rose:'#e59ab4',panel:'#191821'};
+const BASE={text:'#eeecf5',muted:'#aaa6b9',faint:'#5d5873',grid:'#262332',axis:'#4a455c',purple:'#bba7f5',mint:'#92d5c4',amber:'#d8b87d',rose:'#e59ab4',panel:'#191821',well:'#221f2e',body:'#2b2640',block:'#3a3350'};
+/** Palette for the frame being drawn; drawScene swaps it to the active theme before each scene runs. */
+let C=BASE;
+const palettes=new Map<ThemeId,typeof BASE>();
+function palette(theme:ThemeId) {
+  let found=palettes.get(theme);
+  if(!found){found=Object.fromEntries(Object.entries(BASE).map(([key,color])=>[key,themeColor(color,theme)])) as typeof BASE;palettes.set(theme,found)}
+  return found;
+}
 const FONT='Inter,"Segoe UI",Arial,sans-serif';
 
 function plane(box:Box,x0:number,x1:number,y0:number,y1:number,equal=false):Plane {
@@ -194,11 +203,11 @@ const drawIncline:Scene=(c,W,H,q,t)=>{
   const pl=plane({l:8,t:26,w:W-16,h:H-36},-.9,ramp*Math.cos(theta)+.7,-1,ramp*Math.sin(theta)+1.25,true);
   const top={x:0,y:ramp*Math.sin(theta)},d={x:Math.cos(theta),y:-Math.sin(theta)},n={x:Math.sin(theta),y:Math.cos(theta)};
   const P=(x:number,y:number):[number,number]=>[pl.X(x),pl.Y(y)];
-  c.save();c.fillStyle='#221f2e';c.strokeStyle=C.axis;c.lineWidth=1.6;c.beginPath();c.moveTo(...P(0,0));c.lineTo(...P(top.x,top.y));c.lineTo(...P(ramp*Math.cos(theta),0));c.closePath();c.fill();c.stroke();
+  c.save();c.fillStyle=C.well;c.strokeStyle=C.axis;c.lineWidth=1.6;c.beginPath();c.moveTo(...P(0,0));c.lineTo(...P(top.x,top.y));c.lineTo(...P(ramp*Math.cos(theta),0));c.closePath();c.fill();c.stroke();
   c.strokeStyle=C.amber;c.lineWidth=1.8;c.beginPath();c.arc(pl.X(ramp*Math.cos(theta)),pl.Y(0),26,Math.PI,Math.PI+theta);c.stroke();c.restore();
   text(c,'θ',pl.X(ramp*Math.cos(theta))-38*Math.cos(theta/2),pl.Y(0)-38*Math.sin(theta/2),C.amber,'center',13,650);
   const side=.5,along=.45+s.distance,centre={x:top.x+d.x*along+n.x*side/2,y:top.y+d.y*along+n.y*side/2};
-  c.save();c.translate(pl.X(centre.x),pl.Y(centre.y));c.rotate(theta);c.fillStyle='#3a3350';c.strokeStyle=C.purple;c.lineWidth=2;const half=side*pl.sx/2;c.beginPath();c.rect(-half,-half,2*half,2*half);c.fill();c.stroke();c.restore();
+  c.save();c.translate(pl.X(centre.x),pl.Y(centre.y));c.rotate(theta);c.fillStyle=C.block;c.strokeStyle=C.purple;c.lineWidth=2;const half=side*pl.sx/2;c.beginPath();c.rect(-half,-half,2*half,2*half);c.fill();c.stroke();c.restore();
   const k=.062,cx=pl.X(centre.x),cy=pl.Y(centre.y),V=(vx:number,vy:number,newtons:number):[number,number]=>[pl.X(centre.x+vx*newtons*k),pl.Y(centre.y+vy*newtons*k)];
   line(c,cx,cy,...V(d.x,d.y,s.parallel),C.purple,1.8,[4,4]);
   arrow(c,cx,cy,...V(0,-1,s.weight),C.rose,2.6);arrow(c,cx,cy,...V(n.x,n.y,s.normal),C.mint,2.6);
@@ -223,7 +232,7 @@ const drawPendulum:Scene=(c,W,H,q,t)=>{
   line(c,split,base,W-10,base,C.axis,1.3);
   bars.forEach(([label,value,color],i)=>{
     const x=split+slot*(i+.5)+2,height=full*clamp(value/s.total,0,1.02);
-    c.save();c.fillStyle='#221f2e';c.fillRect(x-bar/2,base-full,bar,full);c.fillStyle=color;c.fillRect(x-bar/2,base-height,bar,height);c.restore();
+    c.save();c.fillStyle=C.well;c.fillRect(x-bar/2,base-full,bar,full);c.fillStyle=color;c.fillRect(x-bar/2,base-height,bar,height);c.restore();
     text(c,label,x,base+14,color,'center',11,650);
   });
 };
@@ -235,7 +244,7 @@ const drawCollision:Scene=(c,W,H,q,t)=>{
   line(c,10,track,W-10,track,C.axis,2);
   const cart=(left:number,width:number,color:string,label:string,v:number)=>{
     const x=pl.X(left),w=width*pl.sx,mid=x+w/2;
-    c.save();c.fillStyle='#2b2640';c.strokeStyle=color;c.lineWidth=2;c.beginPath();c.rect(x,track-height-6,w,height);c.fill();c.stroke();c.restore();
+    c.save();c.fillStyle=C.body;c.strokeStyle=color;c.lineWidth=2;c.beginPath();c.rect(x,track-height-6,w,height);c.fill();c.stroke();c.restore();
     dot(c,x+w*.25,track-4,4,color);dot(c,x+w*.75,track-4,4,color);
     text(c,label,mid,track+15,color,'center',11,650);
     arrow(c,mid,track-height-20,mid+v*.5*pl.sx,track-height-20,color,2.6);
@@ -283,10 +292,13 @@ const drawCircuit:Scene=(c,W,H,q,t)=>{
   text(c,`${fmt(q.voltage,1)} V`,l-38,mid,C.amber,'right',13,650);
   // resistor glows with dissipated power
   const glow=Math.sqrt(clamp(s.power/60,0,1)),rw=22,rh=Math.min(84,h*.5);
-  c.save();c.shadowColor=C.rose;c.shadowBlur=6+40*glow;c.fillStyle=`rgba(229,154,180,${.18+.82*glow})`;c.strokeStyle=C.rose;c.lineWidth=2;c.beginPath();c.rect(r-rw/2,mid-rh/2,rw,rh);c.fill();c.stroke();c.restore();
+  c.save();c.shadowColor=C.rose;c.shadowBlur=6+40*glow;c.fillStyle=C.rose;c.strokeStyle=C.rose;c.lineWidth=2;c.beginPath();c.rect(r-rw/2,mid-rh/2,rw,rh);c.globalAlpha=.18+.82*glow;c.fill();c.globalAlpha=1;c.stroke();c.restore();
   text(c,`${fmt(q.resistance,0)} Ω`,r+rw/2+10,mid,C.rose,'left',13,650);
   arrow(c,l+w*.38,top-16,l+w*.62,top-16,C.purple,2.4);text(c,`I = ${fmt(s.current)} A`,l+w/2,top-32,C.purple,'center',12,650);
   text(c,`P = ${fmt(s.power)} W`,l+w/2,mid,C.muted,'center',12);
 };
 
-export const SCENES:Record<string,Scene>={parabola:drawParabola,'unit-circle':drawUnitCircle,derivative:drawDerivative,'vector-addition':drawVectors,'inscribed-angle':drawInscribed,'law-of-large-numbers':drawCoins,projectile:drawProjectile,incline:drawIncline,'pendulum-energy':drawPendulum,collision:drawCollision,'standing-wave':drawWave,circuit:drawCircuit};
+const SCENES:Record<string,Scene>={parabola:drawParabola,'unit-circle':drawUnitCircle,derivative:drawDerivative,'vector-addition':drawVectors,'inscribed-angle':drawInscribed,'law-of-large-numbers':drawCoins,projectile:drawProjectile,incline:drawIncline,'pendulum-energy':drawPendulum,collision:drawCollision,'standing-wave':drawWave,circuit:drawCircuit};
+
+/** Draw one frame of an animation in the given theme. */
+export function drawScene(id:string,theme:ThemeId,c:Ctx,W:number,H:number,q:Params,t:number) {C=palette(theme);SCENES[id](c,W,H,q,t)}
