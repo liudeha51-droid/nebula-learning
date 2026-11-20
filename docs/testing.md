@@ -6,7 +6,7 @@ Backend pytest tests use a separate in-memory SQLite database per test and deter
 
 The 600-second gate is tested immediately before and after the boundary, for practice and completed/uncompleted diagnostic/exam sessions. Completion does not shorten it. Extra client timing fields are rejected. Feedback materialization is checked for idempotency. These are deterministic clock-boundary tests, not a claim that every test literally waits ten minutes.
 
-Frontend Vitest tests exercise transport errors, same-origin write headers and null-vs-zero display semantics. ESLint, strict TypeScript and production Next.js build are separate quality gates. Unit tests alone are not UI acceptance.
+Frontend Vitest tests exercise transport errors, same-origin write headers and null-vs-zero display semantics. The animation models in `apps/web/lib/animations.ts` are pure functions of parameters and time and are unit-tested against known results (projectile range, momentum and energy conservation, pendulum period, stationary wave nodes, the inscribed angle theorem) and for finite output at every slider extreme; the canvas drawing itself is checked visually, not by automated tests. ESLint, strict TypeScript and production Next.js build are separate quality gates. Unit tests alone are not UI acceptance.
 
 ## Browser checks
 
@@ -21,3 +21,9 @@ Alembic `upgrade head`, `check`, `downgrade base`, `upgrade head` run against a 
 ## Known verification limits
 
 No paid model call, Docker/PostgreSQL/Redis deployment, worker/broker end-to-end run, full production security audit, calibrated learning study or data restoration rehearsal was performed. The CI-style local test results do not certify those areas. Current Starlette TestClient emits an upstream httpx deprecation warning; this is recorded rather than silently described as a failure.
+
+## Animation lab extension (PR #2)
+
+The six missing taxonomy nodes are now represented, with additional Riemann-sum and refraction topics (20 animations spanning 18 nodes). New pure deterministic models and independent Canvas scenes live in `apps/web/lib/animation-expansion.ts` and `apps/web/components/animation-expansion-scenes.ts`. Catalogue lookups allow more than one animation per node, and knowledge-map cards link to both where available.
+
+Run `npm run test`, `npm run typecheck`, `npm run lint`, and `npm run build` inside `apps/web`. Browser coverage uses `apps/web/tests/animation-lab.mjs` through the authenticated in-app browser session and is called from `browser-workflows.mjs` with `validateAnimations(tab,base)`. This suite checks all 20 deep links, subject filters, Canvas presence, pause/replay, scrubbing and parameter updates. A code or file review alone does not constitute a browser E2E pass. No backend question bank, learner assessment timer, migrations or release pointer is modified.
