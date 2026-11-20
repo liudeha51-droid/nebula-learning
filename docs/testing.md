@@ -21,3 +21,9 @@ Alembic `upgrade head`, `check`, `downgrade base`, `upgrade head` run against a 
 ## Known verification limits
 
 No paid model call, Docker/PostgreSQL/Redis deployment, worker/broker end-to-end run, full production security audit, calibrated learning study or data restoration rehearsal was performed. The CI-style local test results do not certify those areas. Current Starlette TestClient emits an upstream httpx deprecation warning; this is recorded rather than silently described as a failure.
+
+## Animation lab extension (PR #2)
+
+The six missing taxonomy nodes are now represented, with additional Riemann-sum and refraction topics (20 animations spanning 18 nodes). New pure deterministic models and independent Canvas scenes live in `apps/web/lib/animation-expansion.ts` and `apps/web/components/animation-expansion-scenes.ts`. Catalogue lookups allow more than one animation per node, and knowledge-map cards link to both where available.
+
+Run `npm run test`, `npm run typecheck`, `npm run lint`, and `npm run build` inside `apps/web`. Browser coverage uses `apps/web/tests/animation-lab.mjs` through the authenticated in-app browser session and is called from `browser-workflows.mjs` with `validateAnimations(tab,base)`. This suite checks all 20 deep links, subject filters, Canvas presence, pause/replay, scrubbing and parameter updates. A code or file review alone does not constitute a browser E2E pass. No backend question bank, learner assessment timer, migrations or release pointer is modified.

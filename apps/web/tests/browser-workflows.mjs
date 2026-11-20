@@ -4,6 +4,7 @@
  * const {validateStudent}=await import(absolutePath); await validateStudent(tab);
  */
 import assert from 'node:assert/strict';
+import {validateAnimations} from './animation-lab.mjs';
 export const lastRun=[];
 export async function validateStudent(tab,base='http://127.0.0.1:3410') {
   const results=lastRun;results.length=0;
@@ -56,5 +57,7 @@ export async function validateStudent(tab,base='http://127.0.0.1:3410') {
   await heading('Physics knowledge graph');pass('physics knowledge graph route renders');
   await tab.goto(base+'/admin');
   await heading('Administrator access required');pass('student is denied administrative question access in the UI');
+  const animationChecks=await validateAnimations(tab,base);
+  results.push(...animationChecks.results);
   return {results,diagnosticUrl,limitations:['Real ten-minute elapsed reveal is verified separately.','Admin release workflow is API-integration tested, not part of this student browser suite.']};
 }

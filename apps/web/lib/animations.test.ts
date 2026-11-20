@@ -73,14 +73,15 @@ describe('physics models',()=>{
 });
 
 describe('catalogue',()=>{
-  it('has unique ids, one animation per taxonomy node, and valid parameters',()=>{
+  it('has 20 unique ids across the 18 original taxonomy nodes, and valid parameters',()=>{
     expect(new Set(ANIMATIONS.map(a=>a.id)).size).toBe(ANIMATIONS.length);
-    expect(new Set(ANIMATIONS.map(a=>a.node)).size).toBe(ANIMATIONS.length);
+    expect(ANIMATIONS).toHaveLength(20);
+    expect(new Set(ANIMATIONS.map(a=>a.node)).size).toBe(18);
     for(const a of ANIMATIONS){
       expect(a.node.split('.')[0]).toBe(a.subject);
       for(const q of a.params){expect(q.min).toBeLessThan(q.max);expect(q.initial).toBeGreaterThanOrEqual(q.min);expect(q.initial).toBeLessThanOrEqual(q.max)}
     }
-    expect(animationForNode('physics.motion')?.id).toBe('projectile');expect(animationForNode('math.numbers')).toBeNull();
+    expect(animationForNode('physics.motion')?.id).toBe('projectile');expect(animationForNode('math.numbers')?.id).toBe('fraction-addition');
   });
   it('gives finite durations and readings across every parameter extreme',()=>{
     for(const a of ANIMATIONS){

@@ -2,6 +2,7 @@
  * (parameters, time) using the pure models in lib/animations.ts, laid out
  * against the current canvas size so it stays legible on a phone. */
 import {themeColor,type ThemeId} from '@/lib/themes';
+import {ADDITIONAL_SCENES} from './animation-expansion-scenes';
 import {type Params,rad,clamp,fmt,parabola,parabolaRoots,parabolaX,circlePoint,trigAngle,secantSlope,secantGap,vectorSum,vectorPhase,inscribed,inscribedPoint,coinRun,coinCount,COIN_FLIPS,projectile,incline,INCLINE_LENGTH,pendulum,collision,cartWidth,COLLISION_TRACK,standingWave,STRING_LENGTH,ohm,CIRCUIT_FLOW} from '@/lib/animations';
 
 type Ctx=CanvasRenderingContext2D;
@@ -301,4 +302,10 @@ const drawCircuit:Scene=(c,W,H,q,t)=>{
 const SCENES:Record<string,Scene>={parabola:drawParabola,'unit-circle':drawUnitCircle,derivative:drawDerivative,'vector-addition':drawVectors,'inscribed-angle':drawInscribed,'law-of-large-numbers':drawCoins,projectile:drawProjectile,incline:drawIncline,'pendulum-energy':drawPendulum,collision:drawCollision,'standing-wave':drawWave,circuit:drawCircuit};
 
 /** Draw one frame of an animation in the given theme. */
-export function drawScene(id:string,theme:ThemeId,c:Ctx,W:number,H:number,q:Params,t:number) {C=palette(theme);SCENES[id](c,W,H,q,t)}
+export function drawScene(id:string,theme:ThemeId,c:Ctx,W:number,H:number,q:Params,t:number) {
+  C=palette(theme);
+  if(Object.prototype.hasOwnProperty.call(SCENES,id)){SCENES[id](c,W,H,q,t);return}
+  const expanded=ADDITIONAL_SCENES[id];
+  if(!expanded)throw new Error('Unknown animation scene: '+id);
+  expanded(c,W,H,q,t,C);
+}

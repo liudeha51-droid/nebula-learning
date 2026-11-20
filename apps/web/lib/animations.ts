@@ -2,6 +2,8 @@
  * deterministic function of (parameters, time), so the models are unit-tested
  * and a paused or scrubbed animation shows exactly what a playing one would. */
 
+import {ADDITIONAL_ANIMATIONS} from './animation-expansion';
+
 export const G=9.8;
 export type Params=Record<string,number>;
 export interface ParamSpec {key:string;label:string;min:number;max:number;step:number;initial:number;unit:string}
@@ -313,7 +315,9 @@ export const ANIMATIONS:AnimationSpec[]=[
       {label:'Current I',value:`${fmt(s.current)} A`},
       {label:'Power P',value:`${fmt(s.power)} W`},
       {label:'Charge per second',value:`${fmt(s.current)} C`}]}},
+  ...ADDITIONAL_ANIMATIONS,
 ];
 
+export const animationsForNode=(node:string)=>ANIMATIONS.filter(a=>a.node===node);
 export const animationForNode=(node:string)=>ANIMATIONS.find(a=>a.node===node)||null;
 export const initialParams=(spec:AnimationSpec):Params=>Object.fromEntries(spec.params.map(q=>[q.key,q.initial]));
