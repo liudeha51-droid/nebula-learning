@@ -1,11 +1,10 @@
 /** Canvas scenes for the eight expansion topics. No timers or mutable model
  * state: each scene is derived from (parameters, elapsed time, canvas size). */
-import {fractionSum,fractionPosition,areaTiles,equationBalance,induction,boyle,photoelectric,riemannRight,refraction,ease,GAS_VOLUME,GAS_DURATION,RIEMANN_DURATION} from '../lib/animation-expansion';
+import {fractionSum,fractionPosition,areaTiles,equationBalance,induction,boyle,photoelectric,riemannRight,refraction,ease,GAS_VOLUME,RIEMANN_DURATION} from '../lib/animation-expansion';
 
 type Ctx=CanvasRenderingContext2D;
 export type Palette={text:string;muted:string;faint:string;grid:string;axis:string;purple:string;mint:string;amber:string;rose:string;panel:string;well:string;body:string;block:string};
 export type AdditionalScene=(c:Ctx,w:number,h:number,q:Record<string,number>,t:number,k:Palette)=>void;
-const clamp=(n:number,a:number,b:number)=>Math.max(a,Math.min(b,n));
 const fmt=(n:number,d=2)=>n.toFixed(d);
 const font='Inter,"Segoe UI",Arial,sans-serif';
 function line(c:Ctx,x:number,y:number,X:number,Y:number,color:string,width=2,dash:number[]=[]) {
@@ -93,7 +92,7 @@ const photons:AdditionalScene=(c,w,h,q,t,k)=>{
   const s=photoelectric(q.frequency,q.work),surface=w*.59,top=h*.16,bottom=h*.79;
   rect(c,surface,top,w*.22,bottom-top,k.body,k.axis,.85);
   for(let i=0;i<7;i++)line(c,surface+8,top+12+i*(bottom-top-24)/6,surface+50,top+12+i*(bottom-top-24)/6,k.faint,1.2);
-  const period=1.3,phase=(t%period)/period;
+  const period=1.5,phase=(t%period)/period;
   for(let j=0;j<3;j++){
     const fraction=(phase+j/3)%1,x=w*.08+(surface-w*.08)*fraction,y=h*(.3+j*.14);
     dot(c,x,y,7,k.amber);line(c,x-13,y,x-8,y,k.amber,1.8);
