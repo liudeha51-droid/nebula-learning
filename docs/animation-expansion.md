@@ -56,9 +56,11 @@ From apps/web run:
     npm run lint
     npm run build
 
-The pull-request workflow .github/workflows/animation-models.yml runs these
-four gates. Browser E2E must be separately executed against the real signed-in
-development app. apps/web/tests/browser-workflows.mjs calls
+The pull-request workflow .github/workflows/animation-models.yml runs the
+four static/unit gates, then boots a disposable SQLite-backed FastAPI instance,
+seeds development fixtures and runs real Chromium Playwright tests through
+a locally served Next.js app. This is CI-only and does not deploy. The existing
+in-app browser suite apps/web/tests/browser-workflows.mjs also calls
 validateAnimations(tab,base) in apps/web/tests/animation-lab.mjs, which covers
 20 deep links, Canvas presence, filter counts, sliders, scrubbing, replay,
 pause, restart and reduced playback speed.
